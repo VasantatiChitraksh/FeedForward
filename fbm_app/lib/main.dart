@@ -1,5 +1,6 @@
 import 'package:fbm_app/Pages/FB_profile.dart';
 import 'package:fbm_app/Pages/Homepage.dart';
+import 'package:fbm_app/Pages/map.dart';
 import 'package:flutter/material.dart';
 import 'package:fbm_app/pages/leaderboard.dart';
 import 'package:fbm_app/pages/map.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (context) => const Homepage(),
         '/profile': (context) => const FbProfile(),
-        
+        '/map' : (context) => const Maap(),
       },
     );
   }
