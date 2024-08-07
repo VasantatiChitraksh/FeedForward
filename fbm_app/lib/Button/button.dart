@@ -12,15 +12,13 @@ class butt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
-        label: Text(text,
-            style: TextStyle(fontWeight: FontWeight.w400, color: Colors.black)),
-        onPressed: () {
-          Navigator.pushNamed(context, routeName);
-        },
-        icon: icon,
-      ),
+    return FloatingActionButton.extended(
+      label: Text(text,
+          style: TextStyle(fontWeight: FontWeight.w400, color: Colors.black)),
+      onPressed: () {
+        Navigator.pushNamed(context, routeName);
+      },
+      icon: icon,
     );
   }
 }
