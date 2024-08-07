@@ -1,4 +1,8 @@
+import 'package:fbm_app/Pages/Homepage.dart';
 import 'package:flutter/material.dart';
+import 'package:fbm_app/pages/leaderboard.dart';
+import 'package:fbm_app/pages/map.dart';
+import ''
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +35,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const Homepage(),
     );
   }
 }
