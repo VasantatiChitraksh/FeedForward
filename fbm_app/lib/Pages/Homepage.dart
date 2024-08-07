@@ -5,6 +5,13 @@ class Homepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Food Bank',
+        style: TextStyle(fontWeight: FontWeight.bold,
+        color: Color.fromARGB(255, 0, 0, 0),
+        )),
+        ),
+      );
   }
 }

@@ -2,7 +2,6 @@ import 'package:fbm_app/Pages/Homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:fbm_app/pages/leaderboard.dart';
 import 'package:fbm_app/pages/map.dart';
-import ''
 
 void main() {
   runApp(const MyApp());
