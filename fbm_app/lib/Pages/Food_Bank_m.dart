@@ -13,20 +13,22 @@ class Food_Bank_Management extends StatelessWidget {
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.black,
-            ),
           ),
-          centerTitle : true,
+        ),
+        centerTitle: true,
       ),
       body: Column(
         children: [
           SizedBox(height: 20),
-          butt(text: 'Inventory', 
-               routeName: "/inventory", 
-                icon: Icon(Icons.inventory),
+          butt(
+            text: 'Inventory',
+            routeName: "/inventory",
+            icon: Icon(Icons.inventory),
           ),
-          butt(text: 'Volunteers', 
-               routeName: "volunteers", 
-                icon: Icon(Icons.volunteer_activism),
+          butt(
+            text: 'Volunteers',
+            routeName: "volunteers",
+            icon: Icon(Icons.volunteer_activism),
           ),
         ],
       ),
