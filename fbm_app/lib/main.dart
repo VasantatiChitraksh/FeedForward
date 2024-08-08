@@ -4,6 +4,8 @@ import 'package:fbm_app/Pages/Food_Bank_m.dart';
 import 'package:fbm_app/Pages/Homepage.dart';
 import 'package:fbm_app/Pages/Inventory.dart';
 import 'package:fbm_app/Pages/Outlets.dart';
+import 'package:fbm_app/Pages/Restaurant/Rprofile.dart';
+import 'package:fbm_app/Pages/Restaurant/fbanks_connected.dart';
 import 'package:fbm_app/Pages/Restaurant/listRestaurants.dart';
 import 'package:fbm_app/Pages/Volunteers.dart';
 import 'package:fbm_app/Pages/leaderboard.dart';
@@ -42,6 +44,8 @@ class MyApp extends StatelessWidget {
         '/mydonations': (conetxt) => const Donations(),
         '/outlets': (context) => const Outlets(),
         '/restaurants': (context) => const Restaurants(),
+        '/listfb': (context) => const FB_Connected(),
+        '/rprofile': (context) => const RestaurantProfile(),
       },
     );
   }

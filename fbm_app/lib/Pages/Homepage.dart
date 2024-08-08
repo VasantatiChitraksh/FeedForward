@@ -27,7 +27,11 @@ class Homepage extends StatelessWidget {
         butt(
             text: "WasteManagement",
             routeName: "/waste",
-            icon: Icon(Icons.recycling_rounded))
+            icon: Icon(Icons.recycling_rounded)),
+        butt(
+            text: "Restaurants",
+            routeName: "/rprofile",
+            icon: Icon(Icons.account_circle))
       ]),
     );
   }
