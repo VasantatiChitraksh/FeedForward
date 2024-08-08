@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fbm_app/Button/button.dart';
 
 class Outlets extends StatelessWidget {
   const Outlets({super.key});
@@ -7,7 +8,7 @@ class Outlets extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Outlets",
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -16,6 +17,12 @@ class Outlets extends StatelessWidget {
         ),
         centerTitle: true,
       ),
+      body: const Column(children: [
+        butt(
+            text: "Donate",
+            routeName: "/d_form",
+            icon: Icon(Icons.playlist_add_circle_rounded))
+      ]),
     );
   }
 }

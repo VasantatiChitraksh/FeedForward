@@ -13,6 +13,7 @@ import 'package:fbm_app/Pages/map.dart';
 import 'package:fbm_app/Pages/volunteers_info.dart';
 import 'package:fbm_app/Pages/wastemanagement.dart';
 import 'package:flutter/material.dart';
+import 'package:fbm_app/Pages/donationform.dart';
 
 void main() {
   runApp(const MyApp());
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
         '/restaurants': (context) => const Restaurants(),
         '/listfb': (context) => const FB_Connected(),
         '/rprofile': (context) => const RestaurantProfile(),
+        '/d_form': (context) => const Donation_form(),
       },
     );
   }
