@@ -1,5 +1,7 @@
 import 'package:fbm_app/Pages/FB_profile.dart';
 import 'package:fbm_app/Pages/Homepage.dart';
+import 'package:fbm_app/Pages/Inventory.dart';
+import 'package:fbm_app/Pages/Volunteers.dart';
 import 'package:fbm_app/Pages/leaderboard.dart';
 import 'package:fbm_app/Pages/map.dart';
 import 'package:fbm_app/Pages/wastemanagement.dart';
@@ -28,6 +30,8 @@ class MyApp extends StatelessWidget {
         '/map': (context) => const Maap(),
         '/leaderboard': (context) => const leaderboard(),
         '/waste': (context) => const waste(),
+        '/inventory' : (context) => const Inventory(),
+        'volunteers' : (context) => const Volunteers(),
       },
     );
   }
