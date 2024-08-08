@@ -30,6 +30,11 @@ class Food_Bank_Management extends StatelessWidget {
             routeName: "/volunteers",
             icon: Icon(Icons.volunteer_activism),
           ),
+          butt(
+            text: 'Restaurants',
+            routeName: "/restaurants",
+            icon: Icon(Icons.restaurant_menu_rounded),
+          ),
         ],
       ),
     );

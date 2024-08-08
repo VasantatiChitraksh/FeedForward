@@ -4,6 +4,7 @@ import 'package:fbm_app/Pages/Food_Bank_m.dart';
 import 'package:fbm_app/Pages/Homepage.dart';
 import 'package:fbm_app/Pages/Inventory.dart';
 import 'package:fbm_app/Pages/Outlets.dart';
+import 'package:fbm_app/Pages/Restaurant/listRestaurants.dart';
 import 'package:fbm_app/Pages/Volunteers.dart';
 import 'package:fbm_app/Pages/leaderboard.dart';
 import 'package:fbm_app/Pages/map.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         '/v_info': (context) => const volunteers_info(),
         '/mydonations': (conetxt) => const Donations(),
         '/outlets': (context) => const Outlets(),
+        '/restaurants': (context) => const Restaurants(),
       },
     );
   }
