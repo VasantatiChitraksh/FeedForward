@@ -28,15 +28,6 @@ class FbProfile extends StatelessWidget {
           routeName:"/fb_info",
           icon:Icon(Icons.food_bank)
         )
-
-
-
-
-
-
-
-
-
       ],)
     );
   }
