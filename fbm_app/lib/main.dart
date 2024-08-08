@@ -1,9 +1,13 @@
+import 'package:fbm_app/Pages/Donations.dart';
 import 'package:fbm_app/Pages/FB_profile.dart';
+import 'package:fbm_app/Pages/Food_Bank_m.dart';
 import 'package:fbm_app/Pages/Homepage.dart';
 import 'package:fbm_app/Pages/Inventory.dart';
+import 'package:fbm_app/Pages/Outlets.dart';
 import 'package:fbm_app/Pages/Volunteers.dart';
 import 'package:fbm_app/Pages/leaderboard.dart';
 import 'package:fbm_app/Pages/map.dart';
+import 'package:fbm_app/Pages/volunteers_info.dart';
 import 'package:fbm_app/Pages/wastemanagement.dart';
 import 'package:flutter/material.dart';
 
@@ -30,8 +34,12 @@ class MyApp extends StatelessWidget {
         '/map': (context) => const Maap(),
         '/leaderboard': (context) => const leaderboard(),
         '/waste': (context) => const waste(),
-        '/inventory' : (context) => const Inventory(),
-        'volunteers' : (context) => const Volunteers(),
+        '/inventory': (context) => const Inventory(),
+        '/volunteers': (context) => const Volunteers(),
+        '/fb_info': (context) => const Food_Bank_Management(),
+        '/v_info': (context) => const volunteers_info(),
+        '/mydonations': (conetxt) => const Donations(),
+        '/outlets': (context) => const Outlets(),
       },
     );
   }

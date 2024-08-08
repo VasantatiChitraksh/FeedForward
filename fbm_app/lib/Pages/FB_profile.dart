@@ -20,10 +20,10 @@ class FbProfile extends StatelessWidget {
                 text: "My FB",
                 routeName: "/fb_info",
                 icon: Icon(Icons.food_bank)),
-            butt(text: "Donations", routeName: "", icon: Icon(Icons.favorite)),
+            butt(text: "Donations", routeName: "/mydonations", icon: Icon(Icons.favorite)),
             butt(
                 text: "Volunteer_exp",
-                routeName: "",
+                routeName: "/v_info",
                 icon: Icon(Icons.account_circle_outlined))
           ],
         ));
