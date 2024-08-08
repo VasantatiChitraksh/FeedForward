@@ -1,3 +1,4 @@
+import 'package:fbm_app/Button/button.dart';
 import 'package:flutter/material.dart';
 
 class Volunteers extends StatelessWidget {
@@ -5,6 +6,23 @@ class Volunteers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(
+            "Volunteers",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 0, 0, 0)),
+          ),
+        ),
+        body: Column(
+          children: [
+            butt(
+              text: "",
+              routeName: '/vform',
+              icon: Icon(Icons.add),
+            )
+          ],
+        ));
   }
 }

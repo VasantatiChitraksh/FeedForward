@@ -10,6 +10,7 @@ import 'package:fbm_app/Pages/Restaurant/listRestaurants.dart';
 import 'package:fbm_app/Pages/Volunteers.dart';
 import 'package:fbm_app/Pages/leaderboard.dart';
 import 'package:fbm_app/Pages/map.dart';
+import 'package:fbm_app/Pages/volunteer_reg.dart';
 import 'package:fbm_app/Pages/volunteers_info.dart';
 import 'package:fbm_app/Pages/wastemanagement.dart';
 import 'package:flutter/material.dart';
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
         '/listfb': (context) => const FB_Connected(),
         '/rprofile': (context) => const RestaurantProfile(),
         '/d_form': (context) => const Donation_form(),
+        '/vform' : (context) => const VolunteerForm(),
       },
     );
   }
