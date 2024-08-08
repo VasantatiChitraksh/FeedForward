@@ -12,18 +12,18 @@ class FbProfile extends StatelessWidget {
         ),
         centerTitle: true;
       ),
-      body:Column(children: [
+      body:const Column(children: [
         butt(
           text:"My FB",
           routeName:"/fb_info",
           icon:Icon(Icons.food_bank)
-        )
+        ),
          butt(
           text:"My FB",
           routeName:"/fb_info",
           icon:Icon(Icons.food_bank)
-        )
-         butt(
+        ),
+          butt(
           text:"My FB",
           routeName:"/fb_info",
           icon:Icon(Icons.food_bank)
