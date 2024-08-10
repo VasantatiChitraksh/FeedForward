@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (context) => const Homepage(),
         '/profile': (context) => const FbProfile(),
-        '/map': (context) => const Maap(),
+        // '/map': (context) => const MapOutlets(),
         '/leaderboard': (context) => const leaderboard(),
         '/waste': (context) => const waste(),
         '/inventory': (context) => const Inventory(),
@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
         '/listfb': (context) => const FB_Connected(),
         '/rprofile': (context) => const RestaurantProfile(),
         '/d_form': (context) => const Donation_form(),
-        '/vform' : (context) => const VolunteerForm(),
+        '/vform': (context) => const VolunteerForm(),
       },
     );
   }
