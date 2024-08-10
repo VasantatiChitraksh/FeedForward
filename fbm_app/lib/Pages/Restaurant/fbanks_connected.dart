@@ -1,3 +1,4 @@
+import 'package:fbm_app/Button/button.dart';
 import 'package:flutter/material.dart';
 
 class FB_Connected extends StatelessWidget {
@@ -5,6 +6,16 @@ class FB_Connected extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Food Banks",
+            style: TextStyle(fontWeight: FontWeight.w400, color: Colors.black)),
+      ),
+      body: Column(
+        children: [
+          butt(text: "", routeName: '/outlets', icon: Icon(Icons.add))
+        ],
+      ),
+    );
   }
 }
