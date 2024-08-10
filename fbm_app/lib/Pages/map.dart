@@ -1,80 +1,68 @@
-// import 'package:flutter/material.dart';
-// import 'package:google_maps_flutter/google_maps_flutter.dart';
-// import 'package:location/location.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:permission_handler/permission_handler.dart';
 
-// class MapOutlets extends StatefulWidget {
-//   const MapOutlets({super.key});
+class MapOutlets extends StatefulWidget {
+  const MapOutlets({super.key});
 
-//   @override
-//   State<MapOutlets> createState() => _MapOutletsState();
-// }
+  @override
+  State<MapOutlets> createState() => _MapOutletsState();
+}
 
-// class _MapOutletsState extends State<MapOutlets> {
-//   Location _location = Location();
-//   LocationData? _currentLocation;
-//   GoogleMapController? _mapController;
+class _MapOutletsState extends State<MapOutlets> {
+  LatLng _center = LatLng(0, 0);
+  MapController _mapController = MapController();
+  List<Marker> markers = [];
 
-//   Set<Marker> _markers = {};
+  void initState() {
+    super.initState();
+    _requestPermission();
+  }
 
-//   @override
-//   void initState() {
-//     super.initState();
-//     _getCurrentLocation();
-//   }
+  Future<void> _requestPermission() async {
+    final status = await Permission.location.request();
+    if (status.isGranted) {
+      _getUserLocation();
+    }
+  }
 
-//   Future<void> _getCurrentLocation() async {
-//     try {
-//       bool _serviceEnabled;
-//       PermissionStatus _permissionGranted;
+  Future<void> _getUserLocation() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    setState(() {
+      _center = LatLng(position.latitude, position.longitude);
+      markers.add(Marker(
+        point: _center,
+        builder: (context) => Icon(Icons.location_pin, color: Colors.red),
+      ));
+      _mapController.move(_center, 12.0);
+    });
+  }
 
-//       _serviceEnabled = await _location.serviceEnabled();
-
-//       if (!_serviceEnabled) {
-//         _serviceEnabled = await _location.requestService();
-//       }
-
-//       _permissionGranted = await _location.hasPermission();
-//       if (_permissionGranted == PermissionStatus.denied) {
-//         _permissionGranted = await _location.requestPermission();
-//       }
-
-//       _currentLocation = await _location.getLocation();
-
-//       setState(() {
-//         _markers.add(Marker(
-//             markerId: MarkerId('user location'),
-//             icon:
-//                 BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
-//             position: LatLng(
-//                 _currentLocation!.latitude!, _currentLocation!.longitude!)));
-
-//         _mapController?.animateCamera(CameraUpdate.newLatLngZoom(
-//             LatLng(_currentLocation!.latitude!, _currentLocation!.longitude!),
-//             13.0));
-//       });
-//     } catch (e) {
-//       print('error $e');
-//     }
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('Outlets'),
-//         centerTitle: true,
-//       ),
-//       body: _currentLocation==null? Center(child: CircularProgressIndicator(),):
-//       GoogleMap(
-//           initialCameraPosition: CameraPosition(
-//             target: LatLng(
-//                 _currentLocation!.latitude!, _currentLocation!.longitude!),
-//             zoom: 13.0,
-//           ),
-//           markers: _markers,
-//           onMapCreated: (GoogleMapController controller) {
-//             _mapController = controller;
-//           }),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('MAP'),
+      ),
+      body: FlutterMap(
+        options: MapOptions(
+          center: _center,
+          zoom: 12.0,
+        ),
+        mapController: _mapController,
+        children: [
+          TileLayer(
+            urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            subdomains: ['a', 'b', 'c'],
+          ),
+          MarkerLayer(
+            markers: markers,
+          )
+        ],
+      ),
+    );
+  }
+}
