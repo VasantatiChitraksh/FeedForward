@@ -5,6 +5,16 @@ class waste extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Classify Waste'),
+        centerTitle: true,
+      ),
+      body: Column(
+        children: [
+          
+        ],
+      ),
+    );
   }
 }

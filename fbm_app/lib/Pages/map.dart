@@ -46,23 +46,48 @@ class _MapOutletsState extends State<MapOutlets> {
     return Scaffold(
       appBar: AppBar(
         title: Text('MAP'),
+        centerTitle: true,
       ),
-      body: FlutterMap(
-        options: MapOptions(
-          center: _center,
-          zoom: 12.0,
-        ),
-        mapController: _mapController,
-        children: [
-          TileLayer(
-            urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-            subdomains: ['a', 'b', 'c'],
+      body: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Card(
+          child: MapWidget(center: _center, mapController: _mapController, markers: markers),
+          elevation: 4,
           ),
-          MarkerLayer(
-            markers: markers,
-          )
-        ],
       ),
+    );
+  }
+}
+
+class MapWidget extends StatelessWidget {
+  const MapWidget({
+    super.key,
+    required LatLng center,
+    required MapController mapController,
+    required this.markers,
+  }) : _center = center, _mapController = mapController;
+
+  final LatLng _center;
+  final MapController _mapController;
+  final List<Marker> markers;
+
+  @override
+  Widget build(BuildContext context) {
+    return FlutterMap(
+      options: MapOptions(
+        center: _center,
+        zoom: 12.0,
+      ),
+      mapController: _mapController,
+      children: [
+        TileLayer(
+          urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+          subdomains: ['a', 'b', 'c'],
+        ),
+        MarkerLayer(
+          markers: markers,
+        )
+      ],
     );
   }
 }
