@@ -14,7 +14,7 @@ class waste extends StatefulWidget {
 
 class _wasteState extends State<waste> {
   XFile? imageSelected;
-  var output;
+  String? output;
 
   Future pickImage() async {
     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -39,7 +39,7 @@ class _wasteState extends State<waste> {
     var response = await request.send();
     var responsebody = await response.stream.bytesToString();
     var jsonOutput = jsonDecode(responsebody);
-    var Output = jsonOutput['output'];
+    var Output = jsonOutput['predicted_class'];
     print(Output);
     setState(() {
       output = Output;
@@ -54,7 +54,45 @@ class _wasteState extends State<waste> {
         centerTitle: true,
       ),
       body: Column(
-        children: [],
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 400,
+            child: imageSelected == null
+                ? Image.asset(
+                    'assets/re_nonre_vector.png',
+                  )
+                : Image.file(
+                    File(imageSelected!.path),
+                  ),
+          ),
+          SizedBox(
+            height: 90,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.blue),
+                child:
+                    IconButton(onPressed: pickImage, icon: Icon(Icons.upload)),
+              ),
+              SizedBox(
+                width: 30,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.blue),
+                child: TextButton(onPressed: sendImage, child: Text('PREDICT')),
+              ),
+            ],
+          ),
+          SizedBox(height: 20,),
+          output==null? Text("") : Text(output!)
+        ],
       ),
     );
   }
