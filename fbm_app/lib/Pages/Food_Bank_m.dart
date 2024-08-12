@@ -17,24 +17,38 @@ class Food_Bank_Management extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          SizedBox(height: 20),
-          butt(
+      body:const Stack(
+        children: const [
+          Positioned(
+            bottom: 100,
+            left:500,
+            child:butt(
             text: 'Inventory',
             routeName: "/inventory",
             icon: Icon(Icons.inventory),
           ),
-          butt(
+          ),
+         
+          Positioned(
+            bottom:100,
+            left:600,
+            child:butt(
             text: 'Volunteers',
             routeName: "/volunteers",
             icon: Icon(Icons.volunteer_activism),
           ),
-          butt(
+          )
+          Positioned(
+            bottom: 50,
+            left:550,
+            child:butt(
             text: 'Restaurants',
             routeName: "/restaurants",
             icon: Icon(Icons.restaurant_menu_rounded),
           ),
+          ),
+          
+          
         ],
       ),
     );
