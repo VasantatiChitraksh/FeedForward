@@ -13,10 +13,14 @@ import 'package:fbm_app/Pages/map.dart';
 import 'package:fbm_app/Pages/volunteer_reg.dart';
 import 'package:fbm_app/Pages/volunteers_info.dart';
 import 'package:fbm_app/Pages/wastemanagement.dart';
+import 'package:fbm_app/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fbm_app/Pages/donationform.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
