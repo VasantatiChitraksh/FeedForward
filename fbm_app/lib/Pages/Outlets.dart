@@ -1,57 +1,82 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fbm_app/Styles/BgColor.dart';
 import 'package:fbm_app/Styles/TextStyle.dart';
 import 'package:flutter/material.dart';
 import 'package:fbm_app/Button/button.dart';
+import 'package:latlong2/latlong.dart';
 
-class Outlets extends StatelessWidget {
+class Outlets extends StatefulWidget {
   const Outlets({super.key});
 
   @override
+  State<Outlets> createState() => _OutletsState();
+}
+
+class _OutletsState extends State<Outlets> {
+  List<Map<String, LatLng>> outlets = [];
+
+  @override
+  void initState() {
+    super.initState();
+    loadFoodBankDetails();
+    outlets.add({'Foodbank A': LatLng(37.7749, -122.4194)});
+    outlets.add({'Foodbank B': LatLng(40.7128, -74.0060)});
+    outlets.add({'Foodbank C': LatLng(34.0522, -118.2437)});
+  }
+
+  @override
   Widget build(BuildContext context) {
-  final List<Map<String, String>> outlets = [
-      {'title': 'Outlet 1', 'Address': 'Address : This is the body of notification 1'},
-      {'title': 'Outlet 2', 'Address': 'This is the body of notification 2'},
-      {'title': 'Outlet 3', 'Address': 'This is the body of notification 3'},
-      {'title': 'Outlet 4', 'Address': 'This is the body of notification 1'},
-      {'title': 'Outlet 5', 'Address': 'This is the body of notification 2'},
-      {'title': 'Outlet 6', 'Address': 'This is the body of notification 3'},
-    ];
     return Scaffold(
-      backgroundColor: AppTheme.primaryColor,
-      appBar: AppBar(
-        title: const Text(
-          "OUTLETS",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
+        backgroundColor: AppTheme.primaryColor,
+        appBar: AppBar(
+          title: const Text(
+            "OUTLETS",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
           ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: Column(children: [
-      Container(
-        height: 800,
-        child: ListView.builder(
-          itemCount: 4,
-          itemBuilder: (context,index){
-            final outlet = outlets[index];
-            return Card(
-                      margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
-                      child: Column(
-                        children: [
+        body: Column(children: [
+          Container(
+              height: 800,
+              child: ListView.builder(
+                  itemCount: outlets.length,
+                  itemBuilder: (context, index) {
+                    final outlet = outlets[index];
+                    return Card(
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 16.0),
+                        child: Column(children: [
                           ListTile(
-                          title: Text_Theme.text_size(outlet['title']!,25),
-                          subtitle: Text_Theme.text_size(outlet['Address']!, 15)),
-                         Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            butt(text: 'DONATE', routeName: '/d_form', icon: Icon(Icons.handshake_rounded),),
-                          ],
-                         ) 
-      ])
-                    );})
-      )
-      ]
-      )
-  );}
+                              title: Text_Theme.text_size(outlet.keys.first, 25),),
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              butt(
+                                text: 'DONATE',
+                                routeName: '/d_form',
+                                icon: Icon(Icons.handshake_rounded),
+                              ),
+                            ],
+                          ),
+                        ]));
+                  }))
+        ]));
+  }
+
+  Future<void> loadFoodBankDetails() async {
+    CollectionReference foodbankcollection =
+        FirebaseFirestore.instance.collection('foodbank');
+
+    QuerySnapshot queryfoodbank = await foodbankcollection.get();
+
+    for (var doc in queryfoodbank.docs) {
+      String name = doc['name'];
+      var loc = doc['location'];
+      LatLng latlng = LatLng(loc['latitude'], loc['longitude']);
+      outlets.add({name: latlng});
+    }
+  }
 }
