@@ -38,32 +38,34 @@ class _OutletsState extends State<Outlets> {
           ),
           centerTitle: true,
         ),
-        body: Column(children: [
-          Container(
-              height: 800,
-              child: ListView.builder(
-                  itemCount: outlets.length,
-                  itemBuilder: (context, index) {
-                    final outlet = outlets[index];
-                    return Card(
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 16.0),
-                        child: Column(children: [
-                          ListTile(
-                              title: Text_Theme.text_size(outlet.keys.first, 25),),
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              butt(
-                                text: 'DONATE',
-                                routeName: '/d_form',
-                                icon: Icon(Icons.handshake_rounded),
-                              ),
-                            ],
-                          ),
-                        ]));
-                  }))
-        ]));
+        body: SingleChildScrollView(
+          child: Column(children: [
+            Container(
+                height: 800,
+                child: ListView.builder(
+                    itemCount: outlets.length,
+                    itemBuilder: (context, index) {
+                      final outlet = outlets[index];
+                      return Card(
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 16.0),
+                          child: Column(children: [
+                            ListTile(
+                                title: Text_Theme.text_size(outlet.keys.first, 25),),
+                            const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                butt(
+                                  text: 'DONATE',
+                                  routeName: '/d_form',
+                                  icon: Icon(Icons.handshake_rounded),
+                                ),
+                              ],
+                            ),
+                          ]));
+                    }))
+          ]),
+        ));
   }
 
   Future<void> loadFoodBankDetails() async {

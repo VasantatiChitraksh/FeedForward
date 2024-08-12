@@ -1,4 +1,5 @@
 import 'package:fbm_app/Styles/BgColor.dart';
+import 'package:fbm_app/Styles/TextStyle.dart';
 import 'package:flutter/material.dart';
 import 'package:fbm_app/Button/button.dart';
 import 'package:flutter/widgets.dart';
@@ -19,92 +20,57 @@ class FbProfile extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: 30,
-          ),
-          Padding(
-            padding: EdgeInsets.all(16),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Details",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 30,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: EdgeInsets.all(16),
+              child: Text_Theme.text_colored("DETAILS", 30, Colors.white),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Text_Theme.text_field("USER NAME", 15),
+            SizedBox(
+              height: 15,
+            ),
+            Text_Theme.text_field("CONTACT INFO", 15),
+            SizedBox(
+              height: 200,
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 75,
                 ),
-              ),
+                butt(
+                  text: "My FB",
+                  routeName: "/fb_info",
+                  icon: Icon(Icons.food_bank),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                butt(
+                  text: "Donations",
+                  routeName: "/mydonations",
+                  icon: Icon(Icons.favorite),
+                ),
+              ],
             ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          TextField(
-            controller: TextEditingController(
-              text: 'User Name',
+            SizedBox(
+              height: 20,
             ),
-            readOnly: true, // Makes the field non-editable
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              filled: true,
-              fillColor: Colors.white,
+            butt(
+              text: "Volunteer_exp",
+              routeName: "/v_info",
+              icon: Icon(Icons.account_circle_outlined),
             ),
-            style: TextStyle(
-              color: Colors.black,
-            ),
-          ),
-          SizedBox(
-            height: 50,
-          ),
-          TextField(
-            controller: TextEditingController(text: 'Contact Info'),
-            readOnly: true, // Makes the field non-editable
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              filled: true,
-              fillColor: Colors.white,
-            ),
-            style: TextStyle(
-              color: Colors.black,
-            ),
-          ),
-          SizedBox(
-            height: 2,
-          ),
-          SizedBox(
-            height: 300,
-          ),
-          Row(
-            children: [
-              SizedBox(
-                width: 75,
-              ),
-              butt(
-                text: "My FB",
-                routeName: "/fb_info",
-                icon: Icon(Icons.food_bank),
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              butt(
-                text: "Donations",
-                routeName: "/mydonations",
-                icon: Icon(Icons.favorite),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          butt(
-            text: "Volunteer_exp",
-            routeName: "/v_info",
-            icon: Icon(Icons.account_circle_outlined),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
