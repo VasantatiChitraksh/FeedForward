@@ -51,6 +51,12 @@ class Homepage extends StatelessWidget {
                             ));
                       }),
                 ),
+                Container(
+                  height: 50,
+                  child: GestureDetector(onDoubleTap: () {
+                    Navigator.pushNamed(context, '/emergency');
+                  }),
+                ),
                 SizedBox(
                   height: 70,
                 ),

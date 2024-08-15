@@ -1,3 +1,4 @@
+import 'package:fbm_app/Styles/BgColor.dart';
 import 'package:flutter/material.dart';
 
 class Volunteers extends StatelessWidget {
@@ -7,7 +8,9 @@ class Volunteers extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<String> volunteer = ['V1', 'V2', 'V3', 'v4', 'V5', 'V6', 'V7'];
     return Scaffold(
+      backgroundColor: AppTheme.primaryColor,
       appBar: AppBar(
+        backgroundColor: AppTheme.secondaryColor,
         title: Text(
           "Volunteers",
           style: TextStyle(

@@ -1,4 +1,5 @@
 import 'package:fbm_app/Pages/Donations.dart';
+import 'package:fbm_app/Pages/EmergencyPage.dart';
 import 'package:fbm_app/Pages/FB_profile.dart';
 import 'package:fbm_app/Pages/Food_Bank_m.dart';
 import 'package:fbm_app/Pages/Homepage.dart';
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
         '/rprofile': (context) => const RestaurantProfile(),
         '/d_form': (context) => const Donation_form(),
         '/vform': (context) => const VolunteerForm(),
+        '/emergency': (context) => const Emergency(),
       },
     );
   }
