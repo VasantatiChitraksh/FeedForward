@@ -10,6 +10,7 @@ import 'package:fbm_app/Pages/Restaurant/fbanks_connected.dart';
 import 'package:fbm_app/Pages/Restaurant/listRestaurants.dart';
 import 'package:fbm_app/Pages/Volunteers.dart';
 import 'package:fbm_app/Pages/aunthication/login_screen.dart';
+import 'package:fbm_app/Pages/emergencypage.dart';
 import 'package:fbm_app/Pages/leaderboard.dart';
 import 'package:fbm_app/Pages/map.dart';
 import 'package:fbm_app/Pages/volunteer_reg.dart';
