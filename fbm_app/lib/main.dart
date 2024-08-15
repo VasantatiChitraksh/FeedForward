@@ -9,7 +9,7 @@ import 'package:fbm_app/Pages/Restaurant/Rprofile.dart';
 import 'package:fbm_app/Pages/Restaurant/fbanks_connected.dart';
 import 'package:fbm_app/Pages/Restaurant/listRestaurants.dart';
 import 'package:fbm_app/Pages/Volunteers.dart';
-import 'package:fbm_app/Pages/emergencypage.dart';
+import 'package:fbm_app/Pages/aunthication/login_screen.dart';
 import 'package:fbm_app/Pages/leaderboard.dart';
 import 'package:fbm_app/Pages/map.dart';
 import 'package:fbm_app/Pages/volunteer_reg.dart';
@@ -37,8 +37,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: '/home',
+      initialRoute: '/login',
       routes: {
+        '/login': (context) => const LoginScreen(),
         '/home': (context) => const Homepage(),
         '/profile': (context) => const FbProfile(),
         '/map': (context) => const MapOutlets(),

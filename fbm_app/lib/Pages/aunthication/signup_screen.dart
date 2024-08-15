@@ -1,5 +1,9 @@
+import "package:fbm_app/Pages/Homepage.dart";
 import "package:fbm_app/Pages/aunthication/login_screen.dart";
 import "package:fbm_app/Pages/methods/common_methods.dart";
+import "package:fbm_app/Widgets/loading_dialog.dart";
+import "package:firebase_auth/firebase_auth.dart";
+import "package:firebase_database/firebase_database.dart";
 import "package:flutter/material.dart";
 import "package:flutter/rendering.dart";
 import "package:flutter/widgets.dart";
@@ -21,6 +25,7 @@ class _SignupScreenState extends State<SignupScreen>
   TextEditingController phoneTextEditingController = TextEditingController();
   
  CommonMethods cMethods = CommonMethods();
+ 
 
   signUpFormValidation() {
 
@@ -36,11 +41,55 @@ class _SignupScreenState extends State<SignupScreen>
     else if (passwordTextEditingController.text.trim().length < 6) {
       cMethods.displaysnackBar("Your password must be atlest 6 or more characters.", context);
     }
-    else { // register the user
+    else {  
+      registernewUser();
     }
 
   }
+    registernewUser()async
+    {
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) => LoadingDialog(massagetext: "Adding your Account. . ."),
+      );
 
+
+      final User? userFirebase = (
+         await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailTextEditingController.text.trim(),
+          password: passwordTextEditingController.text.trim(),
+          // ignore: body_might_complete_normally_catch_error
+          ).catchError((errormessage){
+            Navigator.pop(context);
+            cMethods.displaysnackBar(errormessage.toString(), context);
+          })
+      ).user;
+
+      if (!context.mounted) return;
+      // ignore: use_build_context_synchronously
+      Navigator.pop(context);
+
+      DatabaseReference userReference = FirebaseDatabase.instance.ref().child("users").child(userFirebase!.uid);
+
+      Map userMap = 
+      {  
+        "name": usernameTextEditingController.text.trim(),
+        "email": emailTextEditingController.text.trim(), 
+        "contactnum": phoneTextEditingController.text.trim(),
+        "id":userFirebase.uid,
+        "blockstatus": "no", 
+      };
+
+     // userReference.set(userMap);
+      //Navigator.push( context , MaterialPageRoute(builder: (c)=>const LoginScreen()));
+      await userReference.set(userMap);
+      Navigator.pushReplacement(
+        // ignore: use_build_context_synchronously
+        context,
+        MaterialPageRoute(builder: (c) => const Homepage()),
+      );
+   }
 
   @override
   Widget build(BuildContext context) 
@@ -133,7 +182,7 @@ class _SignupScreenState extends State<SignupScreen>
                     ElevatedButton(
                       onPressed: () 
                       {
-                        //signUpFormValidation();
+                        signUpFormValidation();
 
                      },
                      style: ElevatedButton.styleFrom(
