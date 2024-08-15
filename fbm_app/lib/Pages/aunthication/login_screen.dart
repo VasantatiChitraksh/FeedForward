@@ -1,4 +1,9 @@
+import "package:fbm_app/Pages/Homepage.dart";
 import "package:fbm_app/Pages/aunthication/signup_screen.dart";
+import "package:fbm_app/Pages/methods/common_methods.dart";
+import "package:fbm_app/Widgets/loading_dialog.dart";
+import "package:firebase_auth/firebase_auth.dart";
+import "package:firebase_database/firebase_database.dart";
 import "package:flutter/material.dart";
 
 class LoginScreen extends StatefulWidget {
@@ -13,6 +18,78 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
 
+   CommonMethods cMethods = CommonMethods();
+
+
+   signInFormValidation() {
+
+    
+    if (!emailTextEditingController.text.contains("@")){
+      cMethods.displaysnackBar("Please write valid email", context);
+    }
+    else if (passwordTextEditingController.text.trim().length < 6) {
+      cMethods.displaysnackBar("Your password must be atlest 6 or more characters.", context);
+    }
+    else {  
+      loginuser();
+    }
+   }
+
+    loginuser() async 
+    {
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) => LoadingDialog(massagetext: "logging in your Account. . ."),
+      );
+
+      final User? userFirebase = (
+         await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailTextEditingController.text.trim(),
+          password: passwordTextEditingController.text.trim(),
+          // ignore: body_might_complete_normally_catch_error
+          ).catchError((errormessage)
+          {
+            Navigator.pop(context);
+            cMethods.displaysnackBar(errormessage.toString(), context);
+          })
+      ).user;
+
+       if (!context.mounted) return;
+      // ignore: use_build_context_synchronously
+        Navigator.pop(context);
+
+
+        if (userFirebase != null) {
+
+          DatabaseReference userReference = FirebaseDatabase.instance.ref().child("users").child(userFirebase.uid);
+
+          userReference.once().then((snap){
+
+            if (snap.snapshot.value != null) {
+
+              if ((snap.snapshot.value as Map)["blockstatus"] == "no") {
+
+                    Navigator.push(context, MaterialPageRoute(builder: (c)=>Homepage()));
+
+              }else {
+                
+                FirebaseAuth.instance.signOut();
+                cMethods.displaysnackBar("user has been blocked ", context);
+              }
+
+            }else {
+
+              FirebaseAuth.instance.signOut();
+              cMethods.displaysnackBar("user doesn't exixt, signup", context);
+            }
+
+          });
+
+
+        }
+
+    }
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ElevatedButton(
                       onPressed: () 
                       {
-
+                        signInFormValidation();
 
                      },
                      style: ElevatedButton.styleFrom(
