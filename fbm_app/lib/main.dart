@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
         '/listfb': (context) => const FB_Connected(),
         '/rprofile': (context) => const RestaurantProfile(),
         '/d_form': (context) => const Donation_form(),
-        '/vform': (context) => const VolunteerForm(),
+        '/vform': (context) => VolunteerForm(),
         '/emergency': (context) => const Emergency(),
       },
     );
