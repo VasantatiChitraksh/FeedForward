@@ -1,9 +1,12 @@
+import 'package:fbm_app/Inventory/Cooked_food.dart';
+import 'package:fbm_app/Inventory/Packaged_food.dart';
+import 'package:fbm_app/Inventory/staple_food.dart';
 import 'package:fbm_app/Pages/Donations.dart';
 // import 'package:fbm_app/Pages/EmergencyPage.dart';
 import 'package:fbm_app/Pages/FB_profile.dart';
 import 'package:fbm_app/Pages/Food_Bank_m.dart';
 import 'package:fbm_app/Pages/Homepage.dart';
-import 'package:fbm_app/Pages/Inventory.dart';
+import 'package:fbm_app/Inventory/Inventory.dart';
 import 'package:fbm_app/Pages/Outlets.dart';
 import 'package:fbm_app/Pages/Restaurant/Rprofile.dart';
 import 'package:fbm_app/Pages/Restaurant/fbanks_connected.dart';
@@ -58,6 +61,9 @@ class MyApp extends StatelessWidget {
         '/d_form': (context) => const Donation_form(),
         '/vform': (context) => VolunteerForm(),
         '/emergency': (context) => const Emergency(),
+        '/cooked_food': (context) => const CookedFood(),
+        '/packaged_food': (context) => const PackagedFood(),
+        '/staple_food': (context) => const StapleFood(),
       },
     );
   }
