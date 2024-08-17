@@ -26,8 +26,11 @@ import 'package:fbm_app/Pages/donationform.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  try{await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);}
+  finally{
   runApp(const MyApp());
+
+  }
 }
 
 class MyApp extends StatelessWidget {
