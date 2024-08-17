@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:fbm_app/Styles/BgColor.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
@@ -49,9 +50,16 @@ class _wasteState extends State<waste> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppTheme.primaryColor,
       appBar: AppBar(
-        title: Text('Classify Waste'),
-        centerTitle: true,
+          title: const Text(
+            "WASTE",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+          centerTitle: true,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -75,9 +83,9 @@ class _wasteState extends State<waste> {
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.blue),
+                    color: Colors.white),
                 child:
-                    IconButton(onPressed: pickImage, icon: Icon(Icons.upload)),
+                    IconButton(onPressed: pickImage, icon: Icon(Icons.upload, color: Colors.black,)),
               ),
               SizedBox(
                 width: 30,
@@ -85,8 +93,8 @@ class _wasteState extends State<waste> {
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.blue),
-                child: TextButton(onPressed: sendImage, child: Text('PREDICT')),
+                    color: Colors.white),
+                child: TextButton(onPressed: sendImage, child: Text('PREDICT', style: TextStyle(color: Colors.black),)),
               ),
             ],
           ),

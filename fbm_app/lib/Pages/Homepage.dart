@@ -1,5 +1,8 @@
+import 'package:fbm_app/Pages/leaderboard.dart';
 import 'package:fbm_app/Styles/BgColor.dart';
 import 'package:fbm_app/Styles/TextStyle.dart';
+import 'package:fbm_app/classes/leaderboard_class.dart';
+import 'package:fbm_app/classes/notification_class.dart';
 import 'package:flutter/material.dart';
 import 'package:fbm_app/Button/button.dart';
 
@@ -9,14 +12,11 @@ class Homepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, String>> notifications = [
-      {'title': 'Notification 1', 'body': 'This is the body of notification 1'},
-      {'title': 'Notification 2', 'body': 'This is the body of notification 2'},
-      {'title': 'Notification 3', 'body': 'This is the body of notification 3'},
-      {'title': 'Notification 4', 'body': 'This is the body of notification 1'},
-      {'title': 'Notification 5', 'body': 'This is the body of notification 2'},
-      {'title': 'Notification 6', 'body': 'This is the body of notification 3'},
-    ];
+    NotificationClass(
+        'Leaderboard', '${LeaderboardClass.winner_donation} is no.1 donor');
+    NotificationClass(
+        'Leaderboard', '${LeaderboardClass.winner_volunteer} is no.1 volunteer');
+    
     return Scaffold(
         backgroundColor: AppTheme.bgcolor(),
         appBar: AppBar(
@@ -36,20 +36,22 @@ class Homepage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Container(
-                  height: 500,
-                  child: ListView.builder(
-                      itemCount: 5,
-                      itemBuilder: (context, index) {
-                        final noti = notifications[index];
-                        return Card(
-                            margin: EdgeInsets.symmetric(
-                                vertical: 10.0, horizontal: 16.0),
-                            child: ListTile(
-                              title: Text_Theme.text_size(noti['title']!, 20),
-                              subtitle: Text_Theme.text_size(noti['body']!, 15),
-                            ));
-                      }),
+                SingleChildScrollView(
+                  child: Container(
+                      height: 500,
+                      child: ListView.builder(
+                          itemCount: NotificationClass.notifications.length,
+                          itemBuilder: (context, index) {
+                            final noti = NotificationClass.notifications[index];
+                            return Card(
+                                margin: const EdgeInsets.symmetric(
+                                    vertical: 10.0, horizontal: 16.0),
+                                child: ListTile(
+                                  title: Text_Theme.text_size(noti.title, 20),
+                                  subtitle:
+                                      Text_Theme.text_size(noti.subtitle, 15),
+                                ));
+                          })),
                 ),
                 Container(
                   height: 50,
