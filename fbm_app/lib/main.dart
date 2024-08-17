@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
         '/profile': (context) => const FbProfile(),
         '/map': (context) => const MapOutlets(),
         '/leaderboard': (context) => const leaderboard(),
-        '/waste': (context) => const Waste(),
+        '/waste': (context) => const waste(),
         '/inventory': (context) => const Inventory(),
         '/volunteers': (context) => const Volunteers(),
         '/fb_info': (context) => const Food_Bank_Management(),

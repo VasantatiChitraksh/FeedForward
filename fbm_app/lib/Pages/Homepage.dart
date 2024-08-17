@@ -1,4 +1,3 @@
-import 'package:fbm_app/Pages/leaderboard.dart';
 import 'package:fbm_app/Styles/BgColor.dart';
 import 'package:fbm_app/Styles/TextStyle.dart';
 import 'package:fbm_app/classes/leaderboard_class.dart';

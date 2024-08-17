@@ -1,38 +1,22 @@
+import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:tflite_flutter/tflite_flutter.dart';
-import 'package:image/image.dart' as img;
+import 'package:http/http.dart' as http;
 
-class Waste extends StatefulWidget {
-  const Waste({super.key});
+class waste extends StatefulWidget {
+  const waste({super.key});
 
   @override
-  State<Waste> createState() => _WasteState();
+  State<waste> createState() => _wasteState();
 }
 
-class _WasteState extends State<Waste> {
+class _wasteState extends State<waste> {
   XFile? imageSelected;
   String? output;
-  Interpreter? interpreter;
 
-  @override
-  void initState() {
-    super.initState();
-    loadModel();
-  }
-
-  Future<void> loadModel() async {
-    try {
-      interpreter = await Interpreter.fromAsset('assets/model.tflite');
-      print('Model loaded successfully');
-    } catch (e) {
-      print('Error loading model: $e');
-    }
-  }
-
-  Future<void> pickImage() async {
+  Future pickImage() async {
     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (image != null) {
       setState(() {
@@ -41,71 +25,32 @@ class _WasteState extends State<Waste> {
     }
   }
 
-  Future<Uint8List> preprocessImage(File imageFile) async {
-    final image = img.decodeImage(imageFile.readAsBytesSync())!;
-    final resizedImage = img.copyResize(image, width: 512, height: 384);
-    final input = Float32List(1 * 384 * 512 * 3);
+  Future sendImage() async {
+    final file = await File(imageSelected!.path);
+    final filebytes = await file.readAsBytes();
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('http://127.0.0.1:5000/upload'));
 
-    for (int i = 0; i < 384; i++) {
-      for (int j = 0; j < 512; j++) {
-        final pixel = resizedImage.getPixel(j, i);
-        input[(i * 512 + j) * 3] = img.getRed(pixel) / 255.0;
-        input[(i * 512 + j) * 3 + 1] = img.getGreen(pixel) / 255.0;
-        input[(i * 512 + j) * 3 + 2] = img.getBlue(pixel) / 255.0;
-      }
-    }
-
-    return input.buffer.asUint8List();
-  }
-
-  Future<void> runInference() async {
-    if (interpreter == null) {
-      print('Interpreter not loaded');
-      return;
-    }
-
-    if (imageSelected == null) {
-      print('No image selected');
-      return;
-    }
-    final imageFile = File(imageSelected!.path);
-    final input =
-        await preprocessImage(imageFile, 384, 512); // Resize to 384x512
-
-    File imageFile = File(imageSelected!.path);
-    final input = await preprocessImage(imageFile);
-    final output =
-        List.filled(6, 0.0).reshape([1, 6]); 
-
-    interpreter!.run([input], [output]);
-
-    final predictedClassIndex = output[0]
-        .indexWhere((e) => e == output[0].reduce((a, b) => a > b ? a : b));
-    // Run inference
-    interpreter.run(inputTensor, outputTensor);
-
-    // Process the output
-    final outputList = outputTensor[0];
-    final predictedClass =
-        outputList.indexOf(outputList.reduce((a, b) => a > b ? a : b));
-
+    request.files.add(http.MultipartFile.fromBytes(
+      'file',
+      filebytes,
+      filename: imageSelected!.name,
+    ));
+    var response = await request.send();
+    var responsebody = await response.stream.bytesToString();
+    var jsonOutput = jsonDecode(responsebody);
+    var Output = jsonOutput['predicted_class'];
+    print(Output);
     setState(() {
-      this.output = 'Predicted class: $predictedClassIndex';
+      output = Output;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text(
-          "Waste Classification",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-        ),
+        title: Text('Classify Waste'),
         centerTitle: true,
       ),
       body: Column(
@@ -114,35 +59,39 @@ class _WasteState extends State<Waste> {
           SizedBox(
             height: 400,
             child: imageSelected == null
-                ? Image.asset('assets/re_nonre_vector.png')
-                : Image.file(File(imageSelected!.path)),
+                ? Image.asset(
+                    'assets/re_nonre_vector.png',
+                  )
+                : Image.file(
+                    File(imageSelected!.path),
+                  ),
           ),
-          SizedBox(height: 90),
+          SizedBox(
+            height: 90,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.white),
-                child: IconButton(
-                    onPressed: pickImage,
-                    icon: Icon(Icons.upload, color: Colors.black)),
+                    color: Colors.blue),
+                child:
+                    IconButton(onPressed: pickImage, icon: Icon(Icons.upload)),
               ),
-              SizedBox(width: 30),
+              SizedBox(
+                width: 30,
+              ),
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.white),
-                child: TextButton(
-                    onPressed: runInference,
-                    child:
-                        Text('Predict', style: TextStyle(color: Colors.black))),
+                    color: Colors.blue),
+                child: TextButton(onPressed: sendImage, child: Text('PREDICT')),
               ),
             ],
           ),
-          SizedBox(height: 20),
-          output == null ? Text("Waiting for prediction...") : Text(output!)
+          SizedBox(height: 20,),
+          output==null? Text("") : Text(output!)
         ],
       ),
     );
