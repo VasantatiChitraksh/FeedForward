@@ -38,7 +38,7 @@ class Homepage extends StatelessWidget {
               children: [
                 SingleChildScrollView(
                   child: Container(
-                      height: 300,
+                      height: 425,
                       child: ListView.builder(
                           itemCount: NotificationClass.notifications.length,
                           itemBuilder: (context, index) {
