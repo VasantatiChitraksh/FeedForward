@@ -17,7 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
-
+  int role =2;
    CommonMethods cMethods = CommonMethods();
 
 
@@ -29,7 +29,9 @@ class _LoginScreenState extends State<LoginScreen> {
     }
     else if (passwordTextEditingController.text.trim().length < 6) {
       cMethods.displaysnackBar("Your password must be atlest 6 or more characters.", context);
-    }
+    }/*else if (role == 2) {
+      cMethods.displaysnackBar("Select your role as User or Restaunt.", context);
+    }*/
     else {  
       loginuser();
     }
@@ -111,9 +113,11 @@ class _LoginScreenState extends State<LoginScreen> {
               const  Text(
                 "Log in ",
                 style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.white,
+                  fontSize: 40,
+                  color: Colors.redAccent,
                   fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                  
                   
                 ),
                 ),
@@ -162,6 +166,36 @@ class _LoginScreenState extends State<LoginScreen> {
   
                     const SizedBox(height: 60),
 
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Radio<int>(value: 0, groupValue: role, onChanged: (int? value){
+                          setState(() {
+                            role =value!;
+                          });
+                        },
+                         activeColor: Colors.purple,
+                        ),
+                        const Text(
+                          "user",
+                          style: TextStyle(color: Colors.white,fontSize: 18),
+                        ),
+                        SizedBox( height: 30,),
+                        Radio(value: 1, groupValue: role, onChanged: (int? value){
+                          setState(() {
+                            role = value!;
+                          });
+                        },
+                         activeColor: Colors.purple,
+                        ),
+                        const Text(
+                          "Restaurant",
+                          style: TextStyle(color: Colors.white,fontSize: 18),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 30,),
+
                     ElevatedButton(
                       onPressed: () 
                       {
@@ -191,7 +225,7 @@ class _LoginScreenState extends State<LoginScreen> {
               
 
                 //textbutton
-                SizedBox(height: 40),
+                SizedBox(height: 80),
 
                 TextButton(
                   onPressed: ()
@@ -203,11 +237,11 @@ class _LoginScreenState extends State<LoginScreen> {
                    child: const Text(
                     "Don\'t have an Account? Register Here",
                     style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 15,
+                      color: Colors.cyan,
+                      fontSize: 18,
                     ),
                    )),
-                  SizedBox(height: 300),
+                  SizedBox(height: 260),
             ]
           )
       ),
