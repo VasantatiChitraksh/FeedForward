@@ -111,9 +111,11 @@ class _LoginScreenState extends State<LoginScreen> {
               const  Text(
                 "Log in ",
                 style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.white,
+                  fontSize: 40,
+                  color: Colors.redAccent,
                   fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                  
                   
                 ),
                 ),
@@ -191,7 +193,7 @@ class _LoginScreenState extends State<LoginScreen> {
               
 
                 //textbutton
-                SizedBox(height: 40),
+                SizedBox(height: 80),
 
                 TextButton(
                   onPressed: ()
@@ -203,11 +205,11 @@ class _LoginScreenState extends State<LoginScreen> {
                    child: const Text(
                     "Don\'t have an Account? Register Here",
                     style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 15,
+                      color: Colors.cyan,
+                      fontSize: 18,
                     ),
                    )),
-                  SizedBox(height: 300),
+                  SizedBox(height: 260),
             ]
           )
       ),

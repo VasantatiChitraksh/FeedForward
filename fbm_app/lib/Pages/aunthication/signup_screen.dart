@@ -95,18 +95,26 @@ class _SignupScreenState extends State<SignupScreen>
   Widget build(BuildContext context) 
   {
     return  Scaffold(
-      body: SingleChildScrollView(
+      body: Container( 
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage ('assets/login4.png'),
+            fit: BoxFit.cover,
+            ),
+        ), 
+        child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
             children:[ 
               SizedBox(height: 60,),
               const  Text(
-                "Create a User\'s Acoounts",
+                "Create an User\'s Acoounts",
                 style: TextStyle(
                   fontSize: 30,
-                  color: Colors.white,
+                  color: Colors.redAccent,
                   fontWeight: FontWeight.bold,
+                   fontStyle: FontStyle.italic,
                   
                 ),
                 ),
@@ -123,10 +131,10 @@ class _SignupScreenState extends State<SignupScreen>
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
                         labelText:"User Name ",
-                        labelStyle: TextStyle(fontSize: 14), 
+                        labelStyle: TextStyle(color: Colors.white,fontSize: 18), 
                       ),
                       style: const TextStyle(
-                        color: Colors.grey,
+                        color: Colors.white,
                         fontSize: 15,
                       ),
                     ),
@@ -138,10 +146,10 @@ class _SignupScreenState extends State<SignupScreen>
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         labelText:"Email id  ",
-                        labelStyle: TextStyle(fontSize: 14), 
+                        labelStyle: TextStyle(color: Colors.white,fontSize: 18), 
                       ),
                       style: const TextStyle(
-                        color: Colors.grey,
+                        color: Colors.white,
                         fontSize: 15,
                       ),
                     ),  
@@ -154,10 +162,10 @@ class _SignupScreenState extends State<SignupScreen>
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
                         labelText:"User Password ",
-                        labelStyle: TextStyle(fontSize: 14), 
+                        labelStyle: TextStyle(color: Colors.white,fontSize: 18), 
                       ),
                       style: const TextStyle(
-                        color: Colors.grey,
+                        color: Colors.white,
                         fontSize: 15,
                       ),
                     ),
@@ -169,10 +177,10 @@ class _SignupScreenState extends State<SignupScreen>
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         labelText:"Contact number ",
-                        labelStyle: TextStyle(fontSize: 14), 
+                        labelStyle: TextStyle(color: Colors.white,fontSize: 18), 
                       ),
                       style: const TextStyle(
-                        color: Colors.grey,
+                        color: Colors.white,
                         fontSize: 15,
                       ),
                     ),  
@@ -186,12 +194,15 @@ class _SignupScreenState extends State<SignupScreen>
 
                      },
                      style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 39, 101, 176),
+                      backgroundColor:  Colors.purple,
                       padding: EdgeInsets.symmetric(horizontal: 85,vertical: 15)
                      ),
                     
                     child: Text(
-                      "Sign Up"
+                      "Sign Up",
+                       style: TextStyle(
+                       color: Colors.white,fontSize: 14 
+                      ),
                     ),
                     ),
 
@@ -215,10 +226,13 @@ class _SignupScreenState extends State<SignupScreen>
                     "Already have an Account? Login Here",
                     style: TextStyle(
                       color: Colors.cyan,
+                      fontSize: 18,
                     ),
-                   ))
+                   )),
+                   SizedBox(height: 200),
             ]
           )
+      ),
       ),
       ),
     );
