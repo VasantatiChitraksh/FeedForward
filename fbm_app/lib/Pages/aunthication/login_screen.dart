@@ -95,12 +95,19 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body: Container( 
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage ('assets/login4.png'),
+            fit: BoxFit.cover,
+            ),
+        ),
+        child:SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
             children:[ 
-              SizedBox(height: 60,),
+              SizedBox(height: 60),
               const  Text(
                 "Log in ",
                 style: TextStyle(
@@ -111,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 ),
                 //Text feilds + button 
-                SizedBox(height: 40,),
+                SizedBox(height: 60),
                 Padding(
                   padding: const EdgeInsets.all(22),
                   child: Column(
@@ -125,15 +132,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         labelText:"Email id  ",
-                        labelStyle: TextStyle(fontSize: 14), 
+                        labelStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18), 
                       ),
                       style: const TextStyle(
-                        color: Colors.grey,
+                        color: Colors.white,
                         fontSize: 15,
                       ),
                     ),  
 
-                    const SizedBox(height: 40,),
+                    const SizedBox(height: 60),
 
                      TextField(
                       controller: passwordTextEditingController,
@@ -141,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
                         labelText:" Password ",
-                        labelStyle: TextStyle(fontSize: 14), 
+                        labelStyle: TextStyle( color: Colors.white,fontSize: 18), 
                       ),
                       style: const TextStyle(
                         color: Colors.grey,
@@ -151,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     
                     
   
-                    const SizedBox(height: 40,),
+                    const SizedBox(height: 60),
 
                     ElevatedButton(
                       onPressed: () 
@@ -160,13 +169,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
                      },
                      style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 39, 101, 176),
+                      backgroundColor:  Colors.purple,
                       padding: EdgeInsets.symmetric(horizontal: 85,vertical: 15)
                      ),
                     
                     child: Text(
-                      "Login"
-                    ),
+                      "Login",
+                      style: TextStyle(
+                       color: Colors.white,fontSize: 14 
+                      ),
+                      
+
+                    )
+                    ,
                     ),
 
                     ],
@@ -176,7 +191,7 @@ class _LoginScreenState extends State<LoginScreen> {
               
 
                 //textbutton
-                SizedBox(height: 30,),
+                SizedBox(height: 40),
 
                 TextButton(
                   onPressed: ()
@@ -188,13 +203,16 @@ class _LoginScreenState extends State<LoginScreen> {
                    child: const Text(
                     "Don\'t have an Account? Register Here",
                     style: TextStyle(
-                      color: Colors.cyan,
+                      color: Colors.blue,
+                      fontSize: 15,
                     ),
-                   ))
+                   )),
+                  SizedBox(height: 300),
             ]
           )
       ),
       ),
+     ),
     );
   }
 }
