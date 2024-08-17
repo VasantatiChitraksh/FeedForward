@@ -17,7 +17,6 @@ class _WasteState extends State<Waste> {
   String? output;
   late Interpreter interpreter;
 
-
   @override
   void initState() {
     super.initState();
@@ -42,7 +41,8 @@ class _WasteState extends State<Waste> {
     }
   }
 
-  Future<Uint8List> preprocessImage(File imageFile, int width, int height) async {
+  Future<Uint8List> preprocessImage(
+      File imageFile, int width, int height) async {
     final image = img.decodeImage(imageFile.readAsBytesSync())!;
     final resizedImage = img.copyResize(image, width: width, height: height);
     final input = resizedImage.getBytes();
@@ -53,7 +53,8 @@ class _WasteState extends State<Waste> {
     if (imageSelected == null) return null;
 
     final imageFile = File(imageSelected!.path);
-    final input = await preprocessImage(imageFile, 384, 512); // Resize to 384x512
+    final input =
+        await preprocessImage(imageFile, 384, 512); // Resize to 384x512
 
     // Create input tensor
     final inputTensor = input.reshape([1, 384, 512, 3]);
@@ -66,8 +67,9 @@ class _WasteState extends State<Waste> {
 
     // Process the output
     final outputList = outputTensor[0];
-    final predictedClass = outputList.indexOf(outputList.reduce((a, b) => a > b ? a : b));
-    
+    final predictedClass =
+        outputList.indexOf(outputList.reduce((a, b) => a > b ? a : b));
+
     setState(() {
       output = 'Predicted class: $predictedClass';
     });
@@ -117,7 +119,8 @@ class _WasteState extends State<Waste> {
                     color: Colors.white),
                 child: TextButton(
                     onPressed: runInference,
-                    child: Text('Predict', style: TextStyle(color: Colors.black))),
+                    child:
+                        Text('Predict', style: TextStyle(color: Colors.black))),
               ),
             ],
           ),
