@@ -1,11 +1,41 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LeaderboardClass {
-  static String winner_volunteer = "";
-  static String winner_donation = " ";
+  static String winnerVolunteer = "";
+  static String winnerDonation = " ";
 
   static Map<String, int> userPointsSortedDonations = {};
   static Map<String, int> userPointsDonations = {};
+
+  static Map<String, int> userPointsSortedVolunteers = {};
+  static Map<String, int> userPointsVolunteers = {};
+
+  static void allocatePointsVolunteers() async {
+    CollectionReference volunteers =
+        FirebaseFirestore.instance.collection('volunteers');
+
+    QuerySnapshot querySnapshot = await volunteers.get();
+
+    for (var data in querySnapshot.docs) {
+      String username = data['username'];
+      int hours = data['hours'];
+
+      if (userPointsVolunteers.containsKey(username)) {
+        userPointsVolunteers[username] =
+            userPointsVolunteers[username]! + hours;
+      } else {
+        userPointsVolunteers[username] = hours;
+      }
+    }
+  }
+
+  static void rankUsersVolunteers() {
+    userPointsSortedVolunteers = Map.fromEntries(
+        userPointsVolunteers.entries.toList()
+          ..sort((a, b) => b.value.compareTo(a.value)));
+
+    winnerVolunteer = userPointsSortedVolunteers.entries.first.key;
+  }
 
   static void allocatePointsDonations() async {
     CollectionReference donations =
@@ -28,7 +58,7 @@ class LeaderboardClass {
         userPointsDonations.entries.toList()
           ..sort((a, b) => b.value.compareTo(a.value)));
 
-    winner_donation = userPointsSortedDonations.entries.first.key;
+    winnerDonation = userPointsSortedDonations.entries.first.key;
   }
 
   static int calculatePointsDonations(QueryDocumentSnapshot doc) {

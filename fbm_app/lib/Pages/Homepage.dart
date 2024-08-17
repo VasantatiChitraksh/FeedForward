@@ -12,9 +12,9 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     NotificationClass(
-        'Leaderboard', '${LeaderboardClass.winner_donation} is no.1 donor');
-    NotificationClass('Leaderboard',
-        '${LeaderboardClass.winner_volunteer} is no.1 volunteer');
+        'Leaderboard', '${LeaderboardClass.winnerDonation} is no.1 donor');
+    NotificationClass(
+        'Leaderboard', '${LeaderboardClass.winnerVolunteer} is no.1 volunteer');
 
     return Scaffold(
         backgroundColor: AppTheme.bgcolor(),
