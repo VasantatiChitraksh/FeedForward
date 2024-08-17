@@ -39,7 +39,13 @@ class FbProfile extends StatelessWidget {
             ),
             Text_Theme.text_field("CONTACT INFO", 15),
             SizedBox(
-              height: 200,
+              height:15 ,),
+            Text_Theme.text_field("E-mail", 15),
+            SizedBox(
+              height: 15,
+            ),
+            SizedBox(
+              height: 250,
             ),
             Row(
               children: [

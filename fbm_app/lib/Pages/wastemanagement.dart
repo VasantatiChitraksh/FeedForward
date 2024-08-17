@@ -15,7 +15,7 @@ class Waste extends StatefulWidget {
 class _WasteState extends State<Waste> {
   XFile? imageSelected;
   String? output;
-  late Interpreter interpreter;
+  Interpreter? interpreter;
 
   @override
   void initState() {
@@ -25,7 +25,7 @@ class _WasteState extends State<Waste> {
 
   Future<void> loadModel() async {
     try {
-      interpreter = await Interpreter.fromAsset('model.tflite');
+      interpreter = await Interpreter.fromAsset('assets/model.tflite');
       print('Model loaded successfully');
     } catch (e) {
       print('Error loading model: $e');
@@ -41,27 +41,46 @@ class _WasteState extends State<Waste> {
     }
   }
 
-  Future<Uint8List> preprocessImage(
-      File imageFile, int width, int height) async {
+  Future<Uint8List> preprocessImage(File imageFile) async {
     final image = img.decodeImage(imageFile.readAsBytesSync())!;
-    final resizedImage = img.copyResize(image, width: width, height: height);
-    final input = resizedImage.getBytes();
-    return input;
+    final resizedImage = img.copyResize(image, width: 512, height: 384);
+    final input = Float32List(1 * 384 * 512 * 3);
+
+    for (int i = 0; i < 384; i++) {
+      for (int j = 0; j < 512; j++) {
+        final pixel = resizedImage.getPixel(j, i);
+        input[(i * 512 + j) * 3] = img.getRed(pixel) / 255.0;
+        input[(i * 512 + j) * 3 + 1] = img.getGreen(pixel) / 255.0;
+        input[(i * 512 + j) * 3 + 2] = img.getBlue(pixel) / 255.0;
+      }
+    }
+
+    return input.buffer.asUint8List();
   }
 
-  Future<String?> runInference() async {
-    if (imageSelected == null) return null;
+  Future<void> runInference() async {
+    if (interpreter == null) {
+      print('Interpreter not loaded');
+      return;
+    }
 
+    if (imageSelected == null) {
+      print('No image selected');
+      return;
+    }
     final imageFile = File(imageSelected!.path);
     final input =
         await preprocessImage(imageFile, 384, 512); // Resize to 384x512
 
-    // Create input tensor
-    final inputTensor = input.reshape([1, 384, 512, 3]);
+    File imageFile = File(imageSelected!.path);
+    final input = await preprocessImage(imageFile);
+    final output =
+        List.filled(6, 0.0).reshape([1, 6]); 
 
-    // Create output tensor
-    final outputTensor = List.filled(1 * 10, 0.0).reshape([1, 10]);
+    interpreter!.run([input], [output]);
 
+    final predictedClassIndex = output[0]
+        .indexWhere((e) => e == output[0].reduce((a, b) => a > b ? a : b));
     // Run inference
     interpreter.run(inputTensor, outputTensor);
 
@@ -71,10 +90,8 @@ class _WasteState extends State<Waste> {
         outputList.indexOf(outputList.reduce((a, b) => a > b ? a : b));
 
     setState(() {
-      output = 'Predicted class: $predictedClass';
+      this.output = 'Predicted class: $predictedClassIndex';
     });
-
-    return output;
   }
 
   @override
@@ -125,7 +142,7 @@ class _WasteState extends State<Waste> {
             ],
           ),
           SizedBox(height: 20),
-          output == null ? Text("") : Text(output!)
+          output == null ? Text("Waiting for prediction...") : Text(output!)
         ],
       ),
     );

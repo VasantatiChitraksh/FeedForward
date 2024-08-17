@@ -76,6 +76,7 @@ flutter:
     - assets/re_nonre_vector.png
     - assets/login2.jpg
     - assets/login4.png
+    - assets/model.tflite
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
