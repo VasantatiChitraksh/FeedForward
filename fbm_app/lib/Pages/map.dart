@@ -37,10 +37,10 @@ class _MapOutletsState extends State<MapOutlets> {
       var loc = doc['location'];
       LatLng latlng = LatLng(loc['latitude'], loc['longitude']);
       outlets.add({name: latlng});
-      markers.add(Marker(
-        point: latlng,
-        builder: (context) => Icon(Icons.location_pin, color: Colors.red),
-      ));
+      // markers.add(Marker(
+      //   point: latlng,
+      //   builder: (context) => Icon(Icons.location_pin, color: Colors.red),
+      // ));
     }
   }
 
