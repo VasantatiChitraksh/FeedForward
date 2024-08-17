@@ -8,16 +8,16 @@ class volunteers_info extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Map<String, String>> Volunteers = [
-      {'Sno': '1', 'title': 'User Name:', 'body': 'No of Hours Volunteered:'},
-      {'Sno': '2', 'title': 'User Name:', 'body': 'No of Hours Volunteered:'},
-      {'Sno': '3', 'title': 'User Name:', 'body': 'No of Hours Volunteered:'},
-      {'Sno': '4', 'title': 'User Name:', 'body': 'No of Hours Volunteered:'},
-      {'Sno': '5', 'title': 'User Name:', 'body': 'No of Hours Volunteered:'},
-      {'Sno': '6', 'title': 'User Name:', 'body': 'No of Hours Volunteered:'},
-      {'Sno': '7', 'title': 'User Name:', 'body': 'No of Hours Volunteered:'},
-      {'Sno': '8', 'title': 'User Name:', 'body': 'No of Hours Volunteered:'},
-      {'Sno': '9', 'title': 'User Name:', 'body': 'No of Hours Volunteered:'},
-      {'Sno': '10', 'title': 'User Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '1', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '2', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '3', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '4', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '5', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '6', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '7', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '8', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '9', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '10', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
     ];
 
     return Scaffold(
@@ -25,9 +25,11 @@ class volunteers_info extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: AppTheme.titleColor(),
           title: const Text(
-            "Volunteer Info",
+            "VOLUNTEER INFO",
             style: TextStyle(
-              color: Colors.black,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 20
             ),
           ),
         ),
@@ -43,14 +45,14 @@ class volunteers_info extends StatelessWidget {
                     final serial = 'V${volunteer['Sno']}';
                     return Card(
                         margin: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 16.0),
+                            vertical: 15.0, horizontal: 16.0),
                         child: ListTile(
                           title: Column(children: [
                             Text_Theme.text_size(serial, 20),
                             Text_Theme.text_size(volunteer['title']!, 20),
                           ]),
                           subtitle:
-                              Text_Theme.text_size(volunteer['body']!, 15),
+                              Text_Theme.text_size(volunteer['body']!, 20),
                         ));
                   },
                 ),

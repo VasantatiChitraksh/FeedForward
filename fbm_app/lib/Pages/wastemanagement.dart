@@ -68,6 +68,9 @@ class _WasteState extends State<Waste> {
       print('No image selected');
       return;
     }
+    final imageFile = File(imageSelected!.path);
+    final input =
+        await preprocessImage(imageFile, 384, 512); // Resize to 384x512
 
     File imageFile = File(imageSelected!.path);
     final input = await preprocessImage(imageFile);
@@ -78,6 +81,14 @@ class _WasteState extends State<Waste> {
 
     final predictedClassIndex = output[0]
         .indexWhere((e) => e == output[0].reduce((a, b) => a > b ? a : b));
+    // Run inference
+    interpreter.run(inputTensor, outputTensor);
+
+    // Process the output
+    final outputList = outputTensor[0];
+    final predictedClass =
+        outputList.indexOf(outputList.reduce((a, b) => a > b ? a : b));
+
     setState(() {
       this.output = 'Predicted class: $predictedClassIndex';
     });

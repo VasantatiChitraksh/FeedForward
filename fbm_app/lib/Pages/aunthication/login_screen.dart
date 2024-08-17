@@ -1,9 +1,9 @@
+import "package:cloud_firestore/cloud_firestore.dart";
 import "package:fbm_app/Pages/Homepage.dart";
 import "package:fbm_app/Pages/aunthication/signup_screen.dart";
 import "package:fbm_app/Pages/methods/common_methods.dart";
 import "package:fbm_app/Widgets/loading_dialog.dart";
 import "package:firebase_auth/firebase_auth.dart";
-import "package:firebase_database/firebase_database.dart";
 import "package:flutter/material.dart";
 
 class LoginScreen extends StatefulWidget {
@@ -49,6 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
           password: passwordTextEditingController.text.trim(),
           // ignore: body_might_complete_normally_catch_error
           ).catchError((errormessage)
+          // ignore: body_might_complete_normally_catch_error
           {
             Navigator.pop(context);
             cMethods.displaysnackBar(errormessage.toString(), context);
@@ -62,13 +63,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
         if (userFirebase != null) {
 
-          DatabaseReference userReference = FirebaseDatabase.instance.ref().child("users").child(userFirebase.uid);
+          DocumentReference userReference = FirebaseFirestore.instance.collection("users").doc(userFirebase.uid);
 
-          userReference.once().then((snap){
+          DocumentSnapshot snapshot=   await userReference.get();
 
-            if (snap.snapshot.value != null) {
+            if (snapshot.exists) {
 
-              if ((snap.snapshot.value as Map)["blockstatus"] == "no") {
+              if ((snapshot.data() as Map)["blockstatus"] == "no") {
 
                     Navigator.push(context, MaterialPageRoute(builder: (c)=>Homepage()));
 
@@ -84,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
               cMethods.displaysnackBar("user doesn't exixt, signup", context);
             }
 
-          });
+          
 
 
         }

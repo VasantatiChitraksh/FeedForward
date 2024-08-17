@@ -14,9 +14,9 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     NotificationClass(
         'Leaderboard', '${LeaderboardClass.winner_donation} is no.1 donor');
-    NotificationClass(
-        'Leaderboard', '${LeaderboardClass.winner_volunteer} is no.1 volunteer');
-    
+    NotificationClass('Leaderboard',
+        '${LeaderboardClass.winner_volunteer} is no.1 volunteer');
+
     return Scaffold(
         backgroundColor: AppTheme.bgcolor(),
         appBar: AppBar(
@@ -38,7 +38,7 @@ class Homepage extends StatelessWidget {
               children: [
                 SingleChildScrollView(
                   child: Container(
-                      height: 500,
+                      height: 425,
                       child: ListView.builder(
                           itemCount: NotificationClass.notifications.length,
                           itemBuilder: (context, index) {
