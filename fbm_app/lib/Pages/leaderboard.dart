@@ -1,8 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fbm_app/Styles/BgColor.dart';
 import 'package:flutter/material.dart';
 
 class leaderboard extends StatelessWidget {
   const leaderboard({super.key});
+
+  Future<int> calculatePoints(QueryDocumentSnapshot doc) {
+    return doc['rice (kg)'] * 1 +
+        doc['bread'] * 2 +
+        doc['pulses'] * 3 +
+        doc['simple_meals'] * 5 +
+        doc['complex_meals'] * 7;
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -24,6 +24,7 @@ class _MapOutletsState extends State<MapOutlets> {
     super.initState();
     _requestPermission();
     loadFoodBankDetails();
+    addFoodbank();
   }
 
 //getting details from firebase
@@ -43,6 +44,16 @@ class _MapOutletsState extends State<MapOutlets> {
         child: const Icon(Icons.location_pin, color: Colors.red),
       ));
     }
+  }
+
+  Future<void> addFoodbank() async {
+    CollectionReference foodbanks =
+        FirebaseFirestore.instance.collection('foodbank');
+
+    foodbanks.add({
+      'name': 'Foodbank1',
+      'location': const GeoPoint(13.639781, 79.438781),
+    });
   }
 
   Future<void> _requestPermission() async {
@@ -101,9 +112,9 @@ class MapWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlutterMap(
       options: MapOptions(
-        // center: _center,
-        // zoom: 12.0,
-      ),
+          // center: _center,
+          // zoom: 12.0,
+          ),
       mapController: _mapController,
       children: [
         TileLayer(
