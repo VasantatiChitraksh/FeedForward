@@ -90,7 +90,7 @@ class _SignupScreenState extends State<SignupScreen>
       Navigator.pushReplacement(
         // ignore: use_build_context_synchronously
         context,
-        MaterialPageRoute(builder: (c) => const Homepage()),
+        MaterialPageRoute(builder: (c) =>  Homepage(r: role,)),
       );
    }
 

@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:fbm_app/Button/button.dart';
 
 class Homepage extends StatelessWidget {
-  const Homepage({super.key});
+  final r;
+  const Homepage({super.key, this.r});
   static const List<String> route = ['/profile', '/rprofile'];
-  static int r=0;
 
   @override
   Widget build(BuildContext context) {

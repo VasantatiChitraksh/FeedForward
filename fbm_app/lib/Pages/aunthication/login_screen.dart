@@ -10,10 +10,10 @@ class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<LoginScreen> createState() => LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class LoginScreenState extends State<LoginScreen> {
 
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
@@ -73,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
               if ((snapshot.data() as Map)["blockstatus"] == "no") {
                     
-                    Navigator.push(context, MaterialPageRoute(builder: (c)=>Homepage()));
+                    Navigator.push(context, MaterialPageRoute(builder: (c)=>Homepage(r: role,)));
 
               }else {
                 
