@@ -28,7 +28,7 @@ class CookedFood extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return ListTile(
                 leading: Text(
-                  volunteer[index], // Display volunteer number
+                  volunteer[index],
                   style: TextStyle(
                     fontSize: 30,
                   ),
