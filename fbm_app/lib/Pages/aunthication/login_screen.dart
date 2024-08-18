@@ -1,9 +1,9 @@
+import "package:cloud_firestore/cloud_firestore.dart";
 import "package:fbm_app/Pages/Homepage.dart";
 import "package:fbm_app/Pages/aunthication/signup_screen.dart";
 import "package:fbm_app/Pages/methods/common_methods.dart";
 import "package:fbm_app/Widgets/loading_dialog.dart";
 import "package:firebase_auth/firebase_auth.dart";
-import "package:firebase_database/firebase_database.dart";
 import "package:flutter/material.dart";
 
 class LoginScreen extends StatefulWidget {
@@ -17,7 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
-
+  int role =2;
    CommonMethods cMethods = CommonMethods();
 
 
@@ -29,7 +29,9 @@ class _LoginScreenState extends State<LoginScreen> {
     }
     else if (passwordTextEditingController.text.trim().length < 6) {
       cMethods.displaysnackBar("Your password must be atlest 6 or more characters.", context);
-    }
+    }/*else if (role == 2) {
+      cMethods.displaysnackBar("Select your role as User or Restaunt.", context);
+    }*/
     else {  
       loginuser();
     }
@@ -49,6 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
           password: passwordTextEditingController.text.trim(),
           // ignore: body_might_complete_normally_catch_error
           ).catchError((errormessage)
+          // ignore: body_might_complete_normally_catch_error
           {
             Navigator.pop(context);
             cMethods.displaysnackBar(errormessage.toString(), context);
@@ -62,13 +65,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
         if (userFirebase != null) {
 
-          DatabaseReference userReference = FirebaseDatabase.instance.ref().child("users").child(userFirebase.uid);
+          DocumentReference userReference = FirebaseFirestore.instance.collection("users").doc(userFirebase.uid);
 
-          userReference.once().then((snap){
+          DocumentSnapshot snapshot=   await userReference.get();
 
-            if (snap.snapshot.value != null) {
+            if (snapshot.exists) {
 
-              if ((snap.snapshot.value as Map)["blockstatus"] == "no") {
+              if ((snapshot.data() as Map)["blockstatus"] == "no") {
 
                     Navigator.push(context, MaterialPageRoute(builder: (c)=>Homepage()));
 
@@ -84,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
               cMethods.displaysnackBar("user doesn't exixt, signup", context);
             }
 
-          });
+          
 
 
         }
@@ -94,23 +97,32 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body: Container( 
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage ('assets/login4.png'),
+            fit: BoxFit.cover,
+            ),
+        ),
+        child:SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
             children:[ 
-              SizedBox(height: 60,),
+              SizedBox(height: 60),
               const  Text(
                 "Log in ",
                 style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.white,
+                  fontSize: 40,
+                  color: Colors.redAccent,
                   fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                  
                   
                 ),
                 ),
                 //Text feilds + button 
-                SizedBox(height: 40,),
+                SizedBox(height: 60),
                 Padding(
                   padding: const EdgeInsets.all(22),
                   child: Column(
@@ -124,15 +136,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         labelText:"Email id  ",
-                        labelStyle: TextStyle(fontSize: 14), 
+                        labelStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18), 
                       ),
                       style: const TextStyle(
-                        color: Colors.grey,
+                        color: Colors.white,
                         fontSize: 15,
                       ),
                     ),  
 
-                    const SizedBox(height: 40,),
+                    const SizedBox(height: 60),
 
                      TextField(
                       controller: passwordTextEditingController,
@@ -140,7 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
                         labelText:" Password ",
-                        labelStyle: TextStyle(fontSize: 14), 
+                        labelStyle: TextStyle( color: Colors.white,fontSize: 18), 
                       ),
                       style: const TextStyle(
                         color: Colors.grey,
@@ -150,7 +164,37 @@ class _LoginScreenState extends State<LoginScreen> {
                     
                     
   
-                    const SizedBox(height: 40,),
+                    const SizedBox(height: 60),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Radio<int>(value: 0, groupValue: role, onChanged: (int? value){
+                          setState(() {
+                            role =value!;
+                          });
+                        },
+                         activeColor: Colors.purple,
+                        ),
+                        const Text(
+                          "user",
+                          style: TextStyle(color: Colors.white,fontSize: 18),
+                        ),
+                        SizedBox( height: 30,),
+                        Radio(value: 1, groupValue: role, onChanged: (int? value){
+                          setState(() {
+                            role = value!;
+                          });
+                        },
+                         activeColor: Colors.purple,
+                        ),
+                        const Text(
+                          "Restaurant",
+                          style: TextStyle(color: Colors.white,fontSize: 18),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 30,),
 
                     ElevatedButton(
                       onPressed: () 
@@ -159,13 +203,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
                      },
                      style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 39, 101, 176),
+                      backgroundColor:  Colors.purple,
                       padding: EdgeInsets.symmetric(horizontal: 85,vertical: 15)
                      ),
                     
                     child: Text(
-                      "Login"
-                    ),
+                      "Login",
+                      style: TextStyle(
+                       color: Colors.white,fontSize: 14 
+                      ),
+                      
+
+                    )
+                    ,
                     ),
 
                     ],
@@ -175,7 +225,7 @@ class _LoginScreenState extends State<LoginScreen> {
               
 
                 //textbutton
-                SizedBox(height: 30,),
+                SizedBox(height: 80),
 
                 TextButton(
                   onPressed: ()
@@ -188,12 +238,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     "Don\'t have an Account? Register Here",
                     style: TextStyle(
                       color: Colors.cyan,
+                      fontSize: 18,
                     ),
-                   ))
+                   )),
+                  SizedBox(height: 260),
             ]
           )
       ),
       ),
+     ),
     );
   }
 }

@@ -24,8 +24,10 @@ class _MapOutletsState extends State<MapOutlets> {
     super.initState();
     _requestPermission();
     loadFoodBankDetails();
+    addFoodbank();
   }
 
+//getting details from firebase
   Future<void> loadFoodBankDetails() async {
     CollectionReference foodbankcollection =
         FirebaseFirestore.instance.collection('foodbank');
@@ -39,9 +41,19 @@ class _MapOutletsState extends State<MapOutlets> {
       outlets.add({name: latlng});
       markers.add(Marker(
         point: latlng,
-        builder: (context) => Icon(Icons.location_pin, color: Colors.red),
+        child: const Icon(Icons.location_pin, color: Colors.red),
       ));
     }
+  }
+
+  Future<void> addFoodbank() async {
+    CollectionReference foodbanks =
+        FirebaseFirestore.instance.collection('foodbank');
+
+    foodbanks.add({
+      'name': 'Foodbank1',
+      'location': const GeoPoint(13.639781, 79.438781),
+    });
   }
 
   Future<void> _requestPermission() async {
@@ -58,7 +70,7 @@ class _MapOutletsState extends State<MapOutlets> {
       _center = LatLng(position.latitude, position.longitude);
       markers.add(Marker(
         point: _center,
-        builder: (context) => Icon(Icons.location_pin, color: Colors.red),
+        child: const Icon(Icons.location_pin, color: Colors.red),
       ));
       _mapController.move(_center, 12.0);
     });
@@ -68,15 +80,15 @@ class _MapOutletsState extends State<MapOutlets> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('MAP'),
+        title: const Text('MAP'),
         centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Card(
+          elevation: 4,
           child: MapWidget(
               center: _center, mapController: _mapController, markers: markers),
-          elevation: 4,
         ),
       ),
     );
@@ -99,15 +111,15 @@ class MapWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlutterMap(
-      options: MapOptions(
-        center: _center,
-        zoom: 12.0,
-      ),
+      options: const MapOptions(
+          // initialCenter: LatLng(_center.latitude, _center.longitude),
+          initialZoom: 12.0,
+          ),
       mapController: _mapController,
       children: [
         TileLayer(
           urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-          subdomains: ['a', 'b', 'c'],
+          subdomains: const ['a', 'b', 'c'],
         ),
         MarkerLayer(
           markers: markers,
