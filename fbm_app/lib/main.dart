@@ -26,10 +26,11 @@ import 'package:fbm_app/Pages/Forms/donationform.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  try{await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);}
-  finally{
-  runApp(const MyApp());
-
+  try {
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
+  } finally {
+    runApp(const MyApp());
   }
 }
 
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
         '/restaurants': (context) => const Restaurants(),
         '/listfb': (context) => const FB_Connected(),
         '/rprofile': (context) => const RestaurantProfile(),
-        '/d_form': (context) => const Donation_form(),
+        '/d_form': (context) => const DonationForm(),
         '/vform': (context) => VolunteerForm(),
         '/emergency': (context) => const Emergency(),
         '/cooked_food': (context) => const CookedFood(),

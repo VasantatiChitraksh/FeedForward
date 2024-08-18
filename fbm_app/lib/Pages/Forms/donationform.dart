@@ -4,13 +4,19 @@ import 'package:flutter/widgets.dart';
 import 'package:fbm_app/Styles/TextStyle.dart';
 import 'package:fbm_app/Button/button.dart';
 
-class Donation_form extends StatefulWidget {
-  const Donation_form({super.key});
+class DonationForm extends StatefulWidget {
+  const DonationForm({super.key});
+
   @override
-  _DonationFormState createState() => _DonationFormState();
+  State<DonationForm> createState() => _DonationFormState();
 }
 
-class _DonationFormState extends State<Donation_form> {
+class _DonationFormState extends State<DonationForm> {
+  static List<ItemDonationWidget> widgets = [];
+
+  void addWidgets() {
+    widgets.add(const ItemDonationWidget());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +28,15 @@ class _DonationFormState extends State<Donation_form> {
                   color: Color.fromARGB(235, 0, 0, 0))),
           centerTitle: true,
         ),
-        body: const SingleChildScrollView(
+        body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-
-              SizedBox(height: 10),
-              SizedBox(height: 10),
-
-              ItemDonationWidget(),
-              ItemDonationWidget(),
-              Row(children: [
+              const SizedBox(height: 20),
+              //
+              for (int i = 0; i < widgets.length; i++) widgets[i],
+              //
+              const Row(children: [
                 SizedBox(height: 40, width: 175),
                 Padding(
                   padding: EdgeInsets.all(8.0),
@@ -41,7 +45,8 @@ class _DonationFormState extends State<Donation_form> {
                       icon: Icon(Icons.handshake_rounded),
                       routeName: ''),
                 ),
-              ])
+              ]),
+              FloatingActionButton(onPressed: addWidgets)
             ],
           ),
         ));
@@ -64,6 +69,7 @@ class _ItemDonationWidgetState extends State<ItemDonationWidget> {
     'ComplexMeals',
   ];
   String Selected_item = "Rice";
+  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -71,7 +77,8 @@ class _ItemDonationWidgetState extends State<ItemDonationWidget> {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text_Theme.text_colored("Select Food Type", 24, Colors.black87),
+            child:
+                Text_Theme.text_colored("Select Food Type", 24, Colors.black87),
           ),
           const SizedBox(height: 10),
           DropdownButton<String>(
@@ -87,14 +94,14 @@ class _ItemDonationWidgetState extends State<ItemDonationWidget> {
             onChanged: (String? newSelectedValue) {
               setState(() {
                 Selected_item = newSelectedValue!;
-
               });
             },
           ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
             child: TextField(
-                decoration: InputDecoration(
+                controller: controller,
+                decoration: const InputDecoration(
                     hintText: "Enter your quantity in kg/meals",
                     hintStyle: TextStyle(color: Colors.black54),
                     border: OutlineInputBorder())),
