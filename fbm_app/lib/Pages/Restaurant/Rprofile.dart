@@ -2,8 +2,16 @@ import 'package:fbm_app/Button/button.dart';
 import 'package:fbm_app/Styles/TextStyle.dart';
 import 'package:flutter/material.dart';
 
-class RestaurantProfile extends StatelessWidget {
-  const RestaurantProfile({super.key});
+class RestaurantProfile extends StatefulWidget {
+  final  Map <String,dynamic > RDetails;
+  const RestaurantProfile({super.key, required this.RDetails});
+
+  @override
+  State<RestaurantProfile> createState() => _RestaurantProfileState();
+}
+
+class _RestaurantProfileState extends State<RestaurantProfile> {
+
 
   @override
   Widget build(BuildContext context) {

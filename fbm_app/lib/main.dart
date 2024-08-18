@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => const LoginScreen(),
         '/home': (context) => const Homepage(userDetails:{},),
-        '/profile': (context) => const FbProfile(),
+        '/profile': (context) => const FbProfile(proDetails: {},),
         '/map': (context) => const MapOutlets(),
         '/leaderboard': (context) => const leaderboard(),
         '/waste': (context) => const waste(),
@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
         '/outlets': (context) => const Outlets(),
         '/restaurants': (context) => const Restaurants(),
         '/listfb': (context) => const FB_Connected(),
-        '/rprofile': (context) => const RestaurantProfile(),
+        '/rprofile': (context) => const RestaurantProfile(RDetails: {},),
         '/d_form': (context) => const DonationForm(),
         '/vform': (context) => VolunteerForm(),
         '/emergency': (context) => const Emergency(),
