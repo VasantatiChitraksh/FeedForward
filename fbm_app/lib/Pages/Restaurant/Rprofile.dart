@@ -2,23 +2,8 @@ import 'package:fbm_app/Button/button.dart';
 import 'package:fbm_app/Styles/TextStyle.dart';
 import 'package:flutter/material.dart';
 
-class RestaurantProfile extends StatefulWidget {
-  final  Map <String,dynamic > RDetails;
-  const RestaurantProfile({super.key, required this.RDetails});
-
-  @override
-  State<RestaurantProfile> createState() => _RestaurantProfileState();
-}
-
-class _RestaurantProfileState extends State<RestaurantProfile> {
-
-   late Map <String,dynamic> Profile;
-
-  @override
-   void initState() {
-    super.initState();
-    Profile= widget.RDetails;
-  }
+class RestaurantProfile extends StatelessWidget {
+  const RestaurantProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,15 +30,15 @@ class _RestaurantProfileState extends State<RestaurantProfile> {
               SizedBox(
                 height: 15,
               ),
-              Text_Theme.text_field("NAME: ${Profile['name']}", 15),
+              Text_Theme.text_field("NAME", 15),
               SizedBox(
                 height: 15,
               ),
-              Text_Theme.text_field("ADDRESS: ${Profile['address']}", 15),
+              Text_Theme.text_field("ADDRESS", 15),
               SizedBox(
                 height: 15,
               ),
-              Text_Theme.text_field("CONTACT: ${Profile['contactnum']}", 15),
+              Text_Theme.text_field("CONTACT", 15),
               SizedBox(
                 height: 150,
               ),

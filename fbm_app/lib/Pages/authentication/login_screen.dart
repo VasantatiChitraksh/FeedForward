@@ -17,7 +17,7 @@ class LoginScreenState extends State<LoginScreen> {
 
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
-
+  int role =2;
    CommonMethods cMethods = CommonMethods();
 
 
@@ -29,6 +29,8 @@ class LoginScreenState extends State<LoginScreen> {
     }
     else if (passwordTextEditingController.text.trim().length < 6) {
       cMethods.displaysnackBar("Your password must be atlest 6 or more characters.", context);
+    }else if (role == 2) {
+      cMethods.displaysnackBar("Select your role as User or Restaunt.", context);
     }
     else {  
       loginuser();
@@ -66,13 +68,12 @@ class LoginScreenState extends State<LoginScreen> {
           DocumentReference userReference = FirebaseFirestore.instance.collection("users").doc(userFirebase.uid);
 
           DocumentSnapshot snapshot=   await userReference.get();
-           Map <String,dynamic>userdi = snapshot.data() as Map <String,dynamic > ;
 
             if (snapshot.exists) {
 
               if ((snapshot.data() as Map)["blockstatus"] == "no") {
                     
-                    Navigator.push(context, MaterialPageRoute(builder: (c)=>Homepage( userDetails:userdi)));
+                    Navigator.push(context, MaterialPageRoute(builder: (c)=>Homepage(r: role,)));
 
               }else {
                 
@@ -165,7 +166,7 @@ class LoginScreenState extends State<LoginScreen> {
   
                     const SizedBox(height: 60),
 
-                   /* Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Radio<int>(value: 0, groupValue: role, onChanged: (int? value){
@@ -192,7 +193,7 @@ class LoginScreenState extends State<LoginScreen> {
                           style: TextStyle(color: Colors.white,fontSize: 18),
                         ),
                       ],
-                    ),*/
+                    ),
                     SizedBox(height: 30,),
 
                     ElevatedButton(
