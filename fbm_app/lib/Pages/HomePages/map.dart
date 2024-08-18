@@ -23,8 +23,8 @@ class _MapOutletsState extends State<MapOutlets> {
   void initState() {
     super.initState();
     _requestPermission();
-    loadFoodBankDetails();
     addFoodbank();
+    loadFoodBankDetails();
   }
 
 //getting details from firebase
