@@ -1,3 +1,0 @@
-class FoodbankClass {
-  String foodbank = "";
-}
