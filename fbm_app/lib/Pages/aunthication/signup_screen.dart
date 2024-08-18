@@ -3,10 +3,10 @@ import "package:fbm_app/Pages/aunthication/login_screen.dart";
 import "package:fbm_app/Pages/methods/common_methods.dart";
 import "package:fbm_app/Widgets/loading_dialog.dart";
 import "package:firebase_auth/firebase_auth.dart";
+import "package:firebase_database/firebase_database.dart";
 import "package:flutter/material.dart";
 import "package:flutter/rendering.dart";
 import "package:flutter/widgets.dart";
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class SignupScreen extends StatefulWidget {
@@ -23,7 +23,7 @@ class _SignupScreenState extends State<SignupScreen>
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
   TextEditingController phoneTextEditingController = TextEditingController();
-  int role =2;
+  
  CommonMethods cMethods = CommonMethods();
  
 
@@ -40,9 +40,7 @@ class _SignupScreenState extends State<SignupScreen>
     }
     else if (passwordTextEditingController.text.trim().length < 6) {
       cMethods.displaysnackBar("Your password must be atlest 6 or more characters.", context);
-    }/*else if (role == 2) {
-      //cMethods.displaysnackBar("Select your role as User or Restaunt.", context);
-    }*/
+    }
     else {  
       registernewUser();
     }
@@ -72,15 +70,14 @@ class _SignupScreenState extends State<SignupScreen>
       // ignore: use_build_context_synchronously
       Navigator.pop(context);
 
-      DocumentReference userReference = FirebaseFirestore.instance.collection("users").doc(userFirebase!.uid);
+      DatabaseReference userReference = FirebaseDatabase.instance.ref().child("users").child(userFirebase!.uid);
 
-      Map <String, dynamic>userMap = 
+      Map userMap = 
       {  
         "name": usernameTextEditingController.text.trim(),
         "email": emailTextEditingController.text.trim(), 
         "contactnum": phoneTextEditingController.text.trim(),
         "id":userFirebase.uid,
-        "role": role,
         "blockstatus": "no", 
       };
 
@@ -98,26 +95,18 @@ class _SignupScreenState extends State<SignupScreen>
   Widget build(BuildContext context) 
   {
     return  Scaffold(
-      body: Container( 
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage ('assets/login4.png'),
-            fit: BoxFit.cover,
-            ),
-        ), 
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
             children:[ 
               SizedBox(height: 60,),
               const  Text(
-                "Create an User\'s Acoounts",
+                "Create a User\'s Acoounts",
                 style: TextStyle(
                   fontSize: 30,
-                  color: Colors.redAccent,
+                  color: Colors.white,
                   fontWeight: FontWeight.bold,
-                   fontStyle: FontStyle.italic,
                   
                 ),
                 ),
@@ -134,10 +123,10 @@ class _SignupScreenState extends State<SignupScreen>
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
                         labelText:"User Name ",
-                        labelStyle: TextStyle(color: Colors.white,fontSize: 18), 
+                        labelStyle: TextStyle(fontSize: 14), 
                       ),
                       style: const TextStyle(
-                        color: Colors.white,
+                        color: Colors.grey,
                         fontSize: 15,
                       ),
                     ),
@@ -149,10 +138,10 @@ class _SignupScreenState extends State<SignupScreen>
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         labelText:"Email id  ",
-                        labelStyle: TextStyle(color: Colors.white,fontSize: 18), 
+                        labelStyle: TextStyle(fontSize: 14), 
                       ),
                       style: const TextStyle(
-                        color: Colors.white,
+                        color: Colors.grey,
                         fontSize: 15,
                       ),
                     ),  
@@ -165,10 +154,10 @@ class _SignupScreenState extends State<SignupScreen>
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
                         labelText:"User Password ",
-                        labelStyle: TextStyle(color: Colors.white,fontSize: 18), 
+                        labelStyle: TextStyle(fontSize: 14), 
                       ),
                       style: const TextStyle(
-                        color: Colors.white,
+                        color: Colors.grey,
                         fontSize: 15,
                       ),
                     ),
@@ -180,45 +169,15 @@ class _SignupScreenState extends State<SignupScreen>
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         labelText:"Contact number ",
-                        labelStyle: TextStyle(color: Colors.white,fontSize: 18), 
+                        labelStyle: TextStyle(fontSize: 14), 
                       ),
                       style: const TextStyle(
-                        color: Colors.white,
+                        color: Colors.grey,
                         fontSize: 15,
                       ),
                     ),  
   
                     const SizedBox(height: 40,),
-
-                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Radio<int>(value: 0, groupValue: role, onChanged: (int? value){
-                          setState(() {
-                            role =value!;
-                          });
-                        },
-                         activeColor: Colors.purple,
-                        ),
-                        const Text(
-                          "user",
-                          style: TextStyle(color: Colors.white,fontSize: 18),
-                        ),
-                        SizedBox( height: 30,),
-                        Radio(value: 1, groupValue: role, onChanged: (int? value){
-                          setState(() {
-                            role = value!;
-                          });
-                        },
-                         activeColor: Colors.purple,
-                        ),
-                        const Text(
-                          "Restaurant",
-                          style: TextStyle(color: Colors.white,fontSize: 18),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 30,),
 
                     ElevatedButton(
                       onPressed: () 
@@ -227,15 +186,12 @@ class _SignupScreenState extends State<SignupScreen>
 
                      },
                      style: ElevatedButton.styleFrom(
-                      backgroundColor:  Colors.purple,
+                      backgroundColor: const Color.fromARGB(255, 39, 101, 176),
                       padding: EdgeInsets.symmetric(horizontal: 85,vertical: 15)
                      ),
                     
                     child: Text(
-                      "Sign Up",
-                       style: TextStyle(
-                       color: Colors.white,fontSize: 14 
-                      ),
+                      "Sign Up"
                     ),
                     ),
 
@@ -259,13 +215,10 @@ class _SignupScreenState extends State<SignupScreen>
                     "Already have an Account? Login Here",
                     style: TextStyle(
                       color: Colors.cyan,
-                      fontSize: 18,
                     ),
-                   )),
-                   SizedBox(height: 200),
+                   ))
             ]
           )
-      ),
       ),
       ),
     );

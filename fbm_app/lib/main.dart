@@ -1,12 +1,9 @@
-import 'package:fbm_app/Inventory/Cooked_food.dart';
-import 'package:fbm_app/Inventory/Packaged_food.dart';
-import 'package:fbm_app/Inventory/staple_food.dart';
 import 'package:fbm_app/Pages/Donations.dart';
 // import 'package:fbm_app/Pages/EmergencyPage.dart';
 import 'package:fbm_app/Pages/FB_profile.dart';
 import 'package:fbm_app/Pages/Food_Bank_m.dart';
 import 'package:fbm_app/Pages/Homepage.dart';
-import 'package:fbm_app/Inventory/Inventory.dart';
+import 'package:fbm_app/Pages/Inventory.dart';
 import 'package:fbm_app/Pages/Outlets.dart';
 import 'package:fbm_app/Pages/Restaurant/Rprofile.dart';
 import 'package:fbm_app/Pages/Restaurant/fbanks_connected.dart';
@@ -26,11 +23,8 @@ import 'package:fbm_app/Pages/donationform.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  try{await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);}
-  finally{
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
-
-  }
 }
 
 class MyApp extends StatelessWidget {
@@ -62,11 +56,8 @@ class MyApp extends StatelessWidget {
         '/listfb': (context) => const FB_Connected(),
         '/rprofile': (context) => const RestaurantProfile(),
         '/d_form': (context) => const Donation_form(),
-        '/vform': (context) => VolunteerForm(),
+        '/vform': (context) => const VolunteerForm(),
         '/emergency': (context) => const Emergency(),
-        '/cooked_food': (context) => const CookedFood(),
-        '/packaged_food': (context) => const PackagedFood(),
-        '/staple_food': (context) => const StapleFood(),
       },
     );
   }
