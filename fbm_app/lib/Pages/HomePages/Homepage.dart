@@ -68,7 +68,7 @@ class Homepage extends StatelessWidget {
                     SizedBox(width: 40),
                     butt(
                         text: " PROFILE  ",
-                        routeName: route[1],
+                        routeName: route[r],
                         icon: Icon(Icons.account_circle)),
                     SizedBox(width: 20),
                     butt(
