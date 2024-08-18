@@ -81,8 +81,7 @@ class _VolunteerFormState extends State<VolunteerForm> {
                 // Parse the hours worked input to an integer
                 int hoursWorked = int.tryParse(_hoursController.text) ?? 0;
 
-                // Call the function to save the data to Firestore
-                await _saveUserData(_userNameController.text, hoursWorked);
+                // await _saveUserData(_userNameController.text, hoursWorked);
 
                 // Show a Snackbar to confirm data submission
                 ScaffoldMessenger.of(context).showSnackBar(
