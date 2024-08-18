@@ -64,7 +64,6 @@ class _VolunteerFormState extends State<VolunteerForm> {
                       color: Colors.white),
                 ),
               ),
-            ),
             SizedBox(height: 200),
             TextField(
               controller: _hoursController,
@@ -99,6 +98,6 @@ class _VolunteerFormState extends State<VolunteerForm> {
           ],
         ),
       ),
-    );
+    ));
   }
 }
