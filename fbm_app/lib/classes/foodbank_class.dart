@@ -1,0 +1,3 @@
+class FoodbankClass {
+  String foodbank = "";
+}

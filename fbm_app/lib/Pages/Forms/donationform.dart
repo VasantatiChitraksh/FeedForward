@@ -11,11 +11,14 @@ class Donation_form extends StatefulWidget {
 }
 
 class _DonationFormState extends State<Donation_form> {
-  static List<ItemDonationWidget> widgets = [];
-
-  void addWidgets() {
-    widgets.add(const ItemDonationWidget());
-  }
+  final List<String> _selected = [
+    'Rice(kg/g)',
+    'pulses(g)',
+    'Complex_meals',
+    'Simple_meals',
+    'Bread'
+  ];
+  String Selected_item = "Rice";
 
   @override
   Widget build(BuildContext context) {
@@ -32,46 +35,9 @@ class _DonationFormState extends State<Donation_form> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              for(int i=0; i<widgets.length; i++) widgets[i],
-              const Row(children: [
-                SizedBox(height: 40, width: 175),
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: butt(
-                      text: 'Donate',
-                      icon: Icon(Icons.handshake_rounded),
-                      routeName: ''),
-                ),
-              ]),
-              FloatingActionButton(onPressed: addWidgets)
-            ],
-          ),
-        ));
-  }
-}
-
-class ItemDonationWidget extends StatefulWidget {
-  const ItemDonationWidget({super.key});
-
-  @override
-  State<ItemDonationWidget> createState() => _ItemDonationWidgetState();
-}
-
-class _ItemDonationWidgetState extends State<ItemDonationWidget> {
-  final List<String> _selected = [
-    'Rice(kg/g)',
-    'pulses(g)',
-    'Complex_meals',
-    'Simple_meals',
-    'Bread'
-  ];
-  String Selected_item = "Rice";
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        children: [
-          Padding(
+              SizedBox(height: 10),
+              SizedBox(height: 10),
+              Padding(
                 padding: const EdgeInsets.all(8.0),
                 child:
                     Text_Theme.text_colored("Food Type-1", 24, Colors.black87),
@@ -89,20 +55,61 @@ class _ItemDonationWidgetState extends State<ItemDonationWidget> {
                 ).toList(),
                 onChanged: (String? newSelectedValue) {
                   setState(() {
-                    Selected_item = newSelectedValue!;
+                    this.Selected_item = newSelectedValue!;
                   });
                 },
               ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: TextField(
                     decoration: InputDecoration(
                         hintText: "Enter your quantity",
                         hintStyle: TextStyle(color: Colors.black54),
                         border: OutlineInputBorder())),
               ),
-        ],
-      ),
-    );
+              SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child:
+                    Text_Theme.text_colored("Food Type-2", 24, Colors.black87),
+              ),
+              DropdownButton<String>(
+                value: Selected_item,
+                items: _selected.map(
+                  (String dropDownStringItem) {
+                    return DropdownMenuItem(
+                      value: dropDownStringItem,
+                      child: Text(dropDownStringItem),
+                    );
+                  },
+                ).toList(),
+                onChanged: (String? newSelectedValue) {
+                  setState(() {
+                    Selected_item = newSelectedValue!;
+                  });
+                },
+              ),
+              SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                    decoration: InputDecoration(
+                        hintText: "Enter your quantity",
+                        hintStyle: TextStyle(color: Colors.black54),
+                        border: OutlineInputBorder())),
+              ),
+              Row(children: [
+                SizedBox(height: 40, width: 175),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: butt(
+                      text: 'Donate',
+                      icon: Icon(Icons.handshake_rounded),
+                      routeName: ''),
+                ),
+              ])
+            ],
+          ),
+        ));
   }
 }
