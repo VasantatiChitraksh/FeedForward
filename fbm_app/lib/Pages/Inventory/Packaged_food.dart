@@ -9,6 +9,7 @@ class PackagedFood extends StatelessWidget {
     final List<String> volunteer = ['1', '2', '3', '4', '5', '6', '7'];
 
     return Scaffold(
+      backgroundColor: AppTheme.bgcolor(),
       appBar: AppBar(
         backgroundColor: AppTheme.titleColor(),
         title: const Text(
