@@ -40,9 +40,9 @@ class _SignupScreenState extends State<SignupScreen>
     }
     else if (passwordTextEditingController.text.trim().length < 6) {
       cMethods.displaysnackBar("Your password must be atlest 6 or more characters.", context);
-    }/*else if (role == 2) {
-      //cMethods.displaysnackBar("Select your role as User or Restaunt.", context);
-    }*/
+    }else if (role == 2) {
+      cMethods.displaysnackBar("Select your role as User or Restaunt.", context);
+    }
     else {  
       registernewUser();
     }

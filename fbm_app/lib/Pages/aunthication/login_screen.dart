@@ -29,9 +29,9 @@ class _LoginScreenState extends State<LoginScreen> {
     }
     else if (passwordTextEditingController.text.trim().length < 6) {
       cMethods.displaysnackBar("Your password must be atlest 6 or more characters.", context);
-    }/*else if (role == 2) {
+    }else if (role == 2) {
       cMethods.displaysnackBar("Select your role as User or Restaunt.", context);
-    }*/
+    }
     else {  
       loginuser();
     }
@@ -72,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
             if (snapshot.exists) {
 
               if ((snapshot.data() as Map)["blockstatus"] == "no") {
-
+                    
                     Navigator.push(context, MaterialPageRoute(builder: (c)=>Homepage()));
 
               }else {
