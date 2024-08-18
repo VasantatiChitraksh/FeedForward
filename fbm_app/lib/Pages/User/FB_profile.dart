@@ -4,8 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:fbm_app/Button/button.dart';
 import 'package:flutter/widgets.dart';
 
-class FbProfile extends StatelessWidget {
-  const FbProfile({super.key});
+class FbProfile extends StatefulWidget {
+  final  Map <String,dynamic > proDetails;
+  const FbProfile({super.key,required this.proDetails});
+
+  @override
+  State<FbProfile> createState() => _FbProfileState();
+}
+
+class _FbProfileState extends State<FbProfile> {
+ 
+
+
 
   @override
   Widget build(BuildContext context) {
