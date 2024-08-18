@@ -64,8 +64,8 @@ class _VolunteerFormState extends State<VolunteerForm> {
                       color: Colors.white),
                 ),
               ),
-            
-           // SizedBox(height: 200),
+            ),
+            SizedBox(height: 200),
             TextField(
               controller: _hoursController,
               decoration: InputDecoration(
@@ -83,7 +83,7 @@ class _VolunteerFormState extends State<VolunteerForm> {
                 int hoursWorked = int.tryParse(_hoursController.text) ?? 0;
 
                 // Call the function to save the data to Firestore
-                //await _saveUserData(_userNameController.text, hoursWorked);
+                await _saveUserData(_userNameController.text, hoursWorked);
 
                 // Show a Snackbar to confirm data submission
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -99,6 +99,6 @@ class _VolunteerFormState extends State<VolunteerForm> {
           ],
         ),
       ),
-    ));
+    );
   }
 }
