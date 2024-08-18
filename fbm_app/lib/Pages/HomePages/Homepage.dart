@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fbm_app/Styles/BgColor.dart';
 import 'package:fbm_app/Styles/TextStyle.dart';
 import 'package:fbm_app/classes/leaderboard_class.dart';
@@ -5,10 +6,25 @@ import 'package:fbm_app/classes/notification_class.dart';
 import 'package:flutter/material.dart';
 import 'package:fbm_app/Button/button.dart';
 
-class Homepage extends StatelessWidget {
-  final r;
-  const Homepage({super.key, this.r});
+class Homepage extends StatefulWidget {
+  final  Map <String,dynamic > userDetails;
+   const Homepage({super.key, required this.userDetails});
+
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
+
+   late int r;
   static const List<String> route = ['/profile', '/rprofile'];
+
+  @override
+   void initState() {
+    super.initState();
+    r = widget.userDetails['role'];
+  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +84,7 @@ class Homepage extends StatelessWidget {
                     SizedBox(width: 40),
                     butt(
                         text: " PROFILE  ",
-                        routeName: route[1],
+                        routeName: route[r],
                         icon: Icon(Icons.account_circle)),
                     SizedBox(width: 20),
                     butt(
