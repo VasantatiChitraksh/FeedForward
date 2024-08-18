@@ -12,12 +12,13 @@ class StapleFood extends StatelessWidget {
         title: const Text(
           "Staple Food",
           style: TextStyle(
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.bold, 
             color: Color.fromARGB(235, 0, 0, 0),
           ),
         ),
         centerTitle: true,
       ),
+
       body: ListView.builder(
         itemCount: 10,
         itemBuilder: (BuildContext context, int index) {

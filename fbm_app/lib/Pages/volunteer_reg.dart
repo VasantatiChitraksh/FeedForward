@@ -30,33 +30,35 @@ class _VolunteerFormState extends State<VolunteerForm> {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: <Widget>[
-            SizedBox(height: 200),
-            TextField(
-              controller: _userNameController,
-              decoration: InputDecoration(
-                labelText: 'Enter the username',
-                labelStyle: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 24,
-                    color: Colors.white),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: <Widget>[
+              SizedBox(height: 200),
+              TextField(
+                controller: _userNameController,
+                decoration: InputDecoration(
+                  labelText: 'Enter the username',
+                  labelStyle: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 24,
+                      color: Colors.white),
+                ),
               ),
-            ),
-            SizedBox(height: 200),
-            TextField(
-              controller: _hoursController,
-              decoration: InputDecoration(
-                labelText: 'Enter the number of hours worked',
-                labelStyle: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 24,
-                    color: Colors.white),
-              ),
-            )
-          ],
+              SizedBox(height: 200),
+              TextField(
+                controller: _hoursController,
+                decoration: InputDecoration(
+                  labelText: 'Enter the number of hours worked',
+                  labelStyle: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 24,
+                      color: Colors.white),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

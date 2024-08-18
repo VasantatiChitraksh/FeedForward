@@ -19,31 +19,34 @@ class Inventory extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-
-      body: Column(
-        children: [
-                butt(
-                  text: "Cooked Food",
-                  routeName: "/cooked_food",
-                  icon: Icon(Icons.restaurant),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                butt(
-                  text: "Packaged Food",
-                  routeName: "/packaged_food",
-                  icon: Icon(Icons.restaurant),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
+      
+      body: Padding(
+        padding: EdgeInsets.all(50),
+        child: Column(
+          children: [
                   butt(
-                  text: "Staple Food",
-                  routeName: "/staple_food",
-                  icon: Icon(Icons.restaurant),
-                ),
-        ],
+                    text: "Cooked Food",
+                    routeName: "/cooked_food",
+                    icon: Icon(Icons.restaurant),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  butt(
+                    text: "Packaged Food",
+                    routeName: "/packaged_food",
+                    icon: Icon(Icons.restaurant),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                    butt(
+                    text: "Staple Food",
+                    routeName: "/staple_food",
+                    icon: Icon(Icons.restaurant),
+                  ),
+          ],
+        ),
       ),
     );
   }

@@ -3,7 +3,7 @@ import 'package:fbm_app/Inventory/Packaged_food.dart';
 import 'package:fbm_app/Inventory/staple_food.dart';
 import 'package:fbm_app/Pages/Donations.dart';
 // import 'package:fbm_app/Pages/EmergencyPage.dart';
-import 'package:fbm_app/Pages/FB_profile.dart';
+import 'package:fbm_app/User/FB_profile.dart';
 import 'package:fbm_app/Pages/Food_Bank_m.dart';
 import 'package:fbm_app/Pages/Homepage.dart';
 import 'package:fbm_app/Inventory/Inventory.dart';
