@@ -829,8 +829,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.0"
-  tflite_flutter:
-    dependency: "direct main"
+  tuple:
+    dependency: transitive
     description:
       name: tflite_flutter
       sha256: ffb8651fdb116ab0131d6dc47ff73883e0f634ad1ab12bb2852eef1bbeab4a6a
