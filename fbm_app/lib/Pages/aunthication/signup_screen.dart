@@ -1,5 +1,5 @@
-import "package:fbm_app/Pages/HomePages/Homepage.dart";
-import "package:fbm_app/Pages/authentication/login_screen.dart";
+import "package:fbm_app/Pages/Homepage.dart";
+import "package:fbm_app/Pages/aunthication/login_screen.dart";
 import "package:fbm_app/Pages/methods/common_methods.dart";
 import "package:fbm_app/Widgets/loading_dialog.dart";
 import "package:firebase_auth/firebase_auth.dart";
@@ -23,7 +23,6 @@ class _SignupScreenState extends State<SignupScreen>
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
   TextEditingController phoneTextEditingController = TextEditingController();
-  TextEditingController addressTextEditingController = TextEditingController();
   int role =2;
  CommonMethods cMethods = CommonMethods();
  
@@ -41,9 +40,9 @@ class _SignupScreenState extends State<SignupScreen>
     }
     else if (passwordTextEditingController.text.trim().length < 6) {
       cMethods.displaysnackBar("Your password must be atlest 6 or more characters.", context);
-    }else if (role == 2) {
-      cMethods.displaysnackBar("Select your role as User or Restaunt.", context);
-    }
+    }/*else if (role == 2) {
+      //cMethods.displaysnackBar("Select your role as User or Restaunt.", context);
+    }*/
     else {  
       registernewUser();
     }
@@ -80,7 +79,6 @@ class _SignupScreenState extends State<SignupScreen>
         "name": usernameTextEditingController.text.trim(),
         "email": emailTextEditingController.text.trim(), 
         "contactnum": phoneTextEditingController.text.trim(),
-        "address": addressTextEditingController.text.trim(),
         "id":userFirebase.uid,
         "role": role,
         "blockstatus": "no", 
@@ -92,7 +90,7 @@ class _SignupScreenState extends State<SignupScreen>
       Navigator.pushReplacement(
         // ignore: use_build_context_synchronously
         context,
-        MaterialPageRoute(builder: (c) =>  Homepage(userDetails: userMap)),
+        MaterialPageRoute(builder: (c) => const Homepage()),
       );
    }
 
@@ -191,19 +189,6 @@ class _SignupScreenState extends State<SignupScreen>
                     ),  
   
                     const SizedBox(height: 40,),
-                     TextField(
-                      controller: addressTextEditingController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        labelText:"Address ",
-                        labelStyle: TextStyle(color: Colors.white,fontSize: 18), 
-                      ),
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                      ),
-                    ), 
-                    const SizedBox(height: 40,),
 
                      Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -233,7 +218,7 @@ class _SignupScreenState extends State<SignupScreen>
                         ),
                       ],
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(height: 30,),
 
                     ElevatedButton(
                       onPressed: () 
@@ -261,7 +246,7 @@ class _SignupScreenState extends State<SignupScreen>
               
 
                 //textbutton
-                SizedBox(height: 1,),
+                SizedBox(height: 30,),
 
                 TextButton(
                   onPressed: ()
