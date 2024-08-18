@@ -1,17 +1,13 @@
-import 'package:fbm_app/Styles/BgColor.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fbm_app/Styles/TextStyle.dart';
 import 'package:fbm_app/Button/button.dart';
 
-class DonationForm extends StatefulWidget {
-  const DonationForm({super.key});
-
+class Donation_form extends StatefulWidget {
+  const Donation_form({super.key});
   @override
-  State<DonationForm> createState() => _DonationFormState();
+  _DonationFormState createState() => _DonationFormState();
 }
 
 class _DonationFormState extends State<Donation_form> {
@@ -27,13 +23,13 @@ class _DonationFormState extends State<Donation_form> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppTheme.primaryColor,
+        backgroundColor: Colors.black,
         appBar: AppBar(
           title: const Text("Donation Form",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Color.fromARGB(235, 0, 0, 0))),
-          centerTitle: false,
+          centerTitle: true,
         ),
         body: SingleChildScrollView(
           child: Column(
