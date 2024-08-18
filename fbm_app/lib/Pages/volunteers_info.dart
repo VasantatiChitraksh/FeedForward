@@ -22,7 +22,7 @@ class volunteers_info extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
             leading: Text(
-              '${index + 1}',
+              '${index + 1}', // Start numbering from 1
               style: TextStyle(
                 fontSize: 30,
               ),
