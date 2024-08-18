@@ -80,15 +80,15 @@ class _MapOutletsState extends State<MapOutlets> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('MAP'),
+        title: const Text('MAP'),
         centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Card(
+          elevation: 4,
           child: MapWidget(
               center: _center, mapController: _mapController, markers: markers),
-          elevation: 4,
         ),
       ),
     );
@@ -111,15 +111,15 @@ class MapWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlutterMap(
-      options: MapOptions(
-          // center: _center,
-          // zoom: 12.0,
+      options: const MapOptions(
+          // initialCenter: LatLng(_center.latitude, _center.longitude),
+          initialZoom: 12.0,
           ),
       mapController: _mapController,
       children: [
         TileLayer(
           urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-          subdomains: ['a', 'b', 'c'],
+          subdomains: const ['a', 'b', 'c'],
         ),
         MarkerLayer(
           markers: markers,
