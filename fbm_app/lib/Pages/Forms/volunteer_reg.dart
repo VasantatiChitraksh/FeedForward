@@ -21,8 +21,8 @@ class _VolunteerFormState extends State<VolunteerForm> {
     try {
     
       await _firestore.collection('volunteers').add({
-        'userName': userName,
-        'hoursWorked': hoursWorked,
+        'username': userName,
+        'hours': hoursWorked,
         'foodbank':foodbank,
       });
       print("Data saved successfully");
