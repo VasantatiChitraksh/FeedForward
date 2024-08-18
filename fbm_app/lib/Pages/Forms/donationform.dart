@@ -32,10 +32,11 @@ class _DonationFormState extends State<Donation_form> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              for(int i=0; i<widgets.length; i++) widgets[i],
               const Row(children: [
                 SizedBox(height: 40, width: 175),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
                   child: butt(
                       text: 'Donate',
                       icon: Icon(Icons.handshake_rounded),
