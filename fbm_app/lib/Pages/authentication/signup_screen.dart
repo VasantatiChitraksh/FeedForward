@@ -1,5 +1,5 @@
 import "package:fbm_app/Pages/HomePages/Homepage.dart";
-import "package:fbm_app/Pages/aunthication/login_screen.dart";
+import "package:fbm_app/Pages/authentication/login_screen.dart";
 import "package:fbm_app/Pages/methods/common_methods.dart";
 import "package:fbm_app/Widgets/loading_dialog.dart";
 import "package:firebase_auth/firebase_auth.dart";
