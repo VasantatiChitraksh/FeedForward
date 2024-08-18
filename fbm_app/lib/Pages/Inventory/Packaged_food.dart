@@ -6,6 +6,8 @@ class PackagedFood extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> volunteer = ['1', '2', '3', '4', '5', '6', '7'];
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppTheme.titleColor(),
@@ -24,10 +26,10 @@ class PackagedFood extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
             leading: Text(
-              '${index + 1}',
-              style: TextStyle(
-                fontSize: 30,
-              ),
+                  volunteer[index], // Display volunteer number
+                  style: TextStyle(
+                    fontSize: 30,
+                  ),
             ),
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
