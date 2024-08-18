@@ -1,6 +1,6 @@
 import "package:cloud_firestore/cloud_firestore.dart";
-import "package:fbm_app/Pages/HomePages/Homepage.dart";
-import "package:fbm_app/Pages/authentication/signup_screen.dart";
+import "package:fbm_app/Pages/Homepage.dart";
+import "package:fbm_app/Pages/aunthication/signup_screen.dart";
 import "package:fbm_app/Pages/methods/common_methods.dart";
 import "package:fbm_app/Widgets/loading_dialog.dart";
 import "package:firebase_auth/firebase_auth.dart";
@@ -10,14 +10,14 @@ class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => LoginScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends State<LoginScreen> {
 
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
-
+  int role =2;
    CommonMethods cMethods = CommonMethods();
 
 
@@ -29,7 +29,9 @@ class LoginScreenState extends State<LoginScreen> {
     }
     else if (passwordTextEditingController.text.trim().length < 6) {
       cMethods.displaysnackBar("Your password must be atlest 6 or more characters.", context);
-    }
+    }/*else if (role == 2) {
+      cMethods.displaysnackBar("Select your role as User or Restaunt.", context);
+    }*/
     else {  
       loginuser();
     }
@@ -66,13 +68,12 @@ class LoginScreenState extends State<LoginScreen> {
           DocumentReference userReference = FirebaseFirestore.instance.collection("users").doc(userFirebase.uid);
 
           DocumentSnapshot snapshot=   await userReference.get();
-           Map <String,dynamic>userdi = snapshot.data() as Map <String,dynamic > ;
 
             if (snapshot.exists) {
 
               if ((snapshot.data() as Map)["blockstatus"] == "no") {
-                    
-                    Navigator.push(context, MaterialPageRoute(builder: (c)=>Homepage( userDetails:userdi)));
+
+                    Navigator.push(context, MaterialPageRoute(builder: (c)=>Homepage()));
 
               }else {
                 
@@ -165,7 +166,7 @@ class LoginScreenState extends State<LoginScreen> {
   
                     const SizedBox(height: 60),
 
-                   /* Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Radio<int>(value: 0, groupValue: role, onChanged: (int? value){
@@ -192,7 +193,7 @@ class LoginScreenState extends State<LoginScreen> {
                           style: TextStyle(color: Colors.white,fontSize: 18),
                         ),
                       ],
-                    ),*/
+                    ),
                     SizedBox(height: 30,),
 
                     ElevatedButton(
