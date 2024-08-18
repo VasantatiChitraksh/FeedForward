@@ -12,18 +12,17 @@ class Donation_form extends StatefulWidget {
 
 class _DonationFormState extends State<Donation_form> {
   final List<String> _selected = [
-    'Rice(kg/g)',
-    'pulses(g)',
-    'Complex_meals',
-    'Simple_meals',
-    'Bread'
+    'Rice',
+    'wheat',
+    'Pulses',
+    'Red Gram',
+    'Ragi'
   ];
   String Selected_item = "Rice";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black,
         appBar: AppBar(
           title: const Text("Donation Form",
               style: TextStyle(
