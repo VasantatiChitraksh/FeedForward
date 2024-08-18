@@ -8,6 +8,7 @@ import 'package:fbm_app/Button/button.dart';
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
   static const List<String> route = ['/profile', '/rprofile'];
+  static int r=0;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +68,7 @@ class Homepage extends StatelessWidget {
                     SizedBox(width: 40),
                     butt(
                         text: " PROFILE  ",
-                        routeName: route[0],
+                        routeName: route[1],
                         icon: Icon(Icons.account_circle)),
                     SizedBox(width: 20),
                     butt(
