@@ -61,8 +61,4 @@ def getRequiredData(url):
                 
 
 url = "https://www.akshayapatra.org/kitchen-addresses/"
-<<<<<<< HEAD
 getRequiredData(url)
-=======
-getRequiredData(url)
->>>>>>> parent of fa2abf9 (Merge branch 'main' of https://github.com/VasantatiChitraksh/FoodBankManagement)

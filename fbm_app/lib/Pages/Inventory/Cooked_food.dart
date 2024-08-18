@@ -1,5 +1,4 @@
 import 'package:fbm_app/Styles/BgColor.dart';
-import 'package:fbm_app/Styles/TextStyle.dart';
 import 'package:flutter/material.dart';
 
 class CookedFood extends StatelessWidget {
@@ -7,68 +6,7 @@ class CookedFood extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, String>> Volunteers = [
-      {
-        'Sno': '1',
-        'title': 'Item:',
-        'body': 'Quantity:',
-        'expiry': 'Expiry Date:'
-      },
-      {
-        'Sno': '2',
-        'title': 'Item:',
-        'body': 'Quantity:',
-        'expiry': 'Expiry Date:'
-      },
-      {
-        'Sno': '3',
-        'title': 'Item:',
-        'body': 'Quantity:',
-        'expiry': 'Expiry Date:'
-      },
-      {
-        'Sno': '4',
-        'title': 'Item:',
-        'body': 'Quantity:',
-        'expiry': 'Expiry Date:'
-      },
-      {
-        'Sno': '5',
-        'title': 'Item:',
-        'body': 'Quantity:',
-        'expiry': 'Expiry Date:'
-      },
-      {
-        'Sno': '6',
-        'title': 'Item:',
-        'body': 'Quantity:',
-        'expiry': 'Expiry Date:'
-      },
-      {
-        'Sno': '7',
-        'title': 'Item:',
-        'body': 'Quantity:',
-        'expiry': 'Expiry Date:'
-      },
-      {
-        'Sno': '8',
-        'title': 'Item:',
-        'body': 'Quantity:',
-        'expiry': 'Expiry Date:'
-      },
-      {
-        'Sno': '9',
-        'title': 'Item:',
-        'body': 'Quantity:',
-        'expiry': 'Expiry Date:'
-      },
-      {
-        'Sno': '10',
-        'title': 'Item:',
-        'body': 'Quantity:',
-        'expiry': 'Expiry Date:'
-      },
-    ];
+    final List<String> volunteer = ['1', '2', '3', '4', '5', '6', '7'];
 
     return Scaffold(
       backgroundColor: AppTheme.bgcolor(),
@@ -83,36 +21,56 @@ class CookedFood extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: 800,
-              child: ListView.builder(
-                itemCount: Volunteers.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final volunteer = Volunteers[index];
-                  final serial = '${volunteer['Sno']}';
-                  return Card(
-                    margin: EdgeInsets.symmetric(
-                      vertical: 15.0, horizontal: 16.0),
-                    child: ListTile(
-                      title: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text_Theme.text_size(serial, 20),
-                          Text_Theme.text_size(volunteer['title']!, 20),
-                          Text_Theme.text_size(volunteer['body']!, 20),
-                          Text_Theme.text_size(volunteer['expiry']!, 20),
-                        ],
+      body: Stack(
+        children: [
+          ListView.builder(
+            itemCount: volunteer.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ListTile(
+                leading: Text(
+                  volunteer[index], // Display volunteer number
+                  style: TextStyle(
+                    fontSize: 30,
+                  ),
+                ),
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextField(
+                      controller: TextEditingController(text: 'Item'),
+                      readOnly: true,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        filled: true,
+                        fillColor: Colors.white,
                       ),
                     ),
-                  );
-                },
-              ),
-            )
-          ],
-        ),
+                    SizedBox(height: 10),
+                    TextField(
+                      controller: TextEditingController(text: 'Quantity'),
+                      readOnly: true,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        filled: true,
+                        fillColor: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      controller: TextEditingController(text: 'Expiry Date'),
+                      readOnly: true,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        filled: true,
+                        fillColor: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
