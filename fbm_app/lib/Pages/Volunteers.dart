@@ -66,6 +66,7 @@ class Volunteers extends StatelessWidget {
               ),
             ),
           ],
-        ));
+        ),
+      );
   }
 }

@@ -28,7 +28,8 @@ class Donations extends StatelessWidget {
               'assets/logo.png',
               width: 100,
               height: 100,
-            )),
+            ),
+          ),
       ),
       body: SingleChildScrollView(
         child: Column(
