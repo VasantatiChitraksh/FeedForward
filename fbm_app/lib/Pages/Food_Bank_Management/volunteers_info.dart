@@ -8,56 +8,16 @@ class volunteers_info extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Map<String, String>> Volunteers = [
-      {
-        'Sno': '1',
-        'title': 'Food Bank Name:',
-        'body': 'No of Hours Volunteered:'
-      },
-      {
-        'Sno': '2',
-        'title': 'Food Bank Name:',
-        'body': 'No of Hours Volunteered:'
-      },
-      {
-        'Sno': '3',
-        'title': 'Food Bank Name:',
-        'body': 'No of Hours Volunteered:'
-      },
-      {
-        'Sno': '4',
-        'title': 'Food Bank Name:',
-        'body': 'No of Hours Volunteered:'
-      },
-      {
-        'Sno': '5',
-        'title': 'Food Bank Name:',
-        'body': 'No of Hours Volunteered:'
-      },
-      {
-        'Sno': '6',
-        'title': 'Food Bank Name:',
-        'body': 'No of Hours Volunteered:'
-      },
-      {
-        'Sno': '7',
-        'title': 'Food Bank Name:',
-        'body': 'No of Hours Volunteered:'
-      },
-      {
-        'Sno': '8',
-        'title': 'Food Bank Name:',
-        'body': 'No of Hours Volunteered:'
-      },
-      {
-        'Sno': '9',
-        'title': 'Food Bank Name:',
-        'body': 'No of Hours Volunteered:'
-      },
-      {
-        'Sno': '10',
-        'title': 'Food Bank Name:',
-        'body': 'No of Hours Volunteered:'
-      },
+      {'Sno': '1', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '2', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '3', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '4', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '5', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '6', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '7', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '8', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '9', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '10', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
     ];
 
     return Scaffold(
@@ -67,7 +27,10 @@ class volunteers_info extends StatelessWidget {
           title: const Text(
             "VOLUNTEER INFO",
             style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 20
+            ),
           ),
         ),
         body: SingleChildScrollView(

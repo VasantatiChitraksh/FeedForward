@@ -1,6 +1,5 @@
 import 'package:fbm_app/Button/button.dart';
 import 'package:flutter/material.dart';
-import 'package:fbm_app/Styles/BgColor.dart';
 
 class FB_Connected extends StatelessWidget {
   const FB_Connected({super.key});
@@ -9,7 +8,6 @@ class FB_Connected extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<String> f_b = ['NGO1', 'NG02', 'NGO3', 'NGO4', 'NGO5'];
     return Scaffold(
-        backgroundColor: AppTheme.bgcolor(),
         appBar: AppBar(
           title: Text("Food Banks",
               style:
@@ -23,7 +21,9 @@ class FB_Connected extends StatelessWidget {
                 return ListTile(
                   leading: Text(
                     f_b[index], // Start numbering from 1
-                    style: TextStyle(fontSize: 30, color: Colors.black),
+                    style: TextStyle(
+                      fontSize: 30,
+                    ),
                   ),
                   title: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
