@@ -1,4 +1,5 @@
 import 'package:fbm_app/Styles/BgColor.dart';
+import 'package:fbm_app/Styles/TextStyle.dart';
 import 'package:flutter/material.dart';
 
 class volunteers_info extends StatelessWidget {
@@ -6,55 +7,58 @@ class volunteers_info extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, String>> Volunteers = [
+      {'Sno': '1', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '2', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '3', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '4', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '5', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '6', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '7', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '8', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '9', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+      {'Sno': '10', 'title': 'Food Bank Name:', 'body': 'No of Hours Volunteered:'},
+    ];
+
     return Scaffold(
-      backgroundColor: AppTheme.bgcolor(),
-      appBar: AppBar(
-        backgroundColor: AppTheme.titleColor(),
-        title: const Text(
-          "Volunteer Info",
-          style: TextStyle(
-            color: Colors.black,
+        backgroundColor: AppTheme.bgcolor(),
+        appBar: AppBar(
+          backgroundColor: AppTheme.titleColor(),
+          title: const Text(
+            "VOLUNTEER INFO",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 20
+            ),
           ),
         ),
-      ),
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            leading: Text(
-              '${index + 1}', // Start numbering from 1
-              style: TextStyle(
-                fontSize: 30,
-              ),
-            ),
-            title: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextField(
-                  controller: TextEditingController(text: 'Food Bank Name'),
-                  readOnly: true,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    filled: true,
-                    fillColor: Colors.white,
-                  ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                height: 800,
+                child: ListView.builder(
+                  itemCount: 10,
+                  itemBuilder: (BuildContext context, int index) {
+                    final volunteer = Volunteers[index];
+                    final serial = 'V${volunteer['Sno']}';
+                    return Card(
+                        margin: EdgeInsets.symmetric(
+                            vertical: 15.0, horizontal: 16.0),
+                        child: ListTile(
+                          title: Column(children: [
+                            Text_Theme.text_size(serial, 20),
+                            Text_Theme.text_size(volunteer['title']!, 20),
+                          ]),
+                          subtitle:
+                              Text_Theme.text_size(volunteer['body']!, 20),
+                        ));
+                  },
                 ),
-                SizedBox(height: 10),
-                TextField(
-                  controller: TextEditingController(text: 'Number of hours'),
-                  readOnly: true,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    filled: true,
-                    fillColor: Colors.white,
-                  ),
-                ),
-                SizedBox(height: 10),
-              ],
-            ),
-          );
-        },
-      ),
-    );
+              )
+            ],
+          ),
+        ));
   }
 }

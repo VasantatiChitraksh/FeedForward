@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fbm_app/Styles/BgColor.dart';
+import 'package:fbm_app/classes/leaderboard_class.dart';
 import 'package:flutter/material.dart';
 
 class leaderboard extends StatelessWidget {
@@ -20,25 +22,25 @@ class leaderboard extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
-          SizedBox(
+          const SizedBox(
             height: 70,
           ),
           TextField(
             controller: TextEditingController(text: 'Number of meals donated'),
             readOnly: true,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: OutlineInputBorder(),
               filled: true,
               fillColor: Colors.white,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           TextField(
             controller: TextEditingController(text: 'Number of active users'),
             readOnly: true,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: OutlineInputBorder(),
               filled: true,
               fillColor: Colors.white,
@@ -51,7 +53,7 @@ class leaderboard extends StatelessWidget {
             color: Colors.brown,
             height: 30,
             width: 120,
-            child: Center(
+            child: const Center(
               child: Text(
                 "Volunteer",
                 style: TextStyle(
@@ -65,28 +67,31 @@ class leaderboard extends StatelessWidget {
             color: Colors.brown,
             height: 500,
             child: ListView.builder(
-              itemCount: 10,
+              itemCount: LeaderboardClass.userPointsSortedVolunteers.length >= 10
+                  ? LeaderboardClass.userPointsVolunteers.length
+                  : 10,
               itemBuilder: (BuildContext context, int index) {
+                var user = LeaderboardClass.userPointsVolunteers.entries.toList()[0].key;
                 return ListTile(
                   leading: Text(
                     '${index + 1}',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 15,
                     ),
                   ),
-                  title: Text(''),
+                  title: Text(user),
                 );
               },
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
           Container(
             color: const Color.fromARGB(255, 35, 137, 38),
             height: 30,
             width: 120,
-            child: Center(
+            child: const Center(
               child: Text(
                 "Donations",
                 style: TextStyle(
@@ -100,16 +105,19 @@ class leaderboard extends StatelessWidget {
             color: const Color.fromARGB(255, 35, 137, 38),
             height: 500,
             child: ListView.builder(
-              itemCount: 10,
+              itemCount: LeaderboardClass.userPointsSortedDonations.length >= 10
+                  ? LeaderboardClass.userPointsDonations.length
+                  : 10,
               itemBuilder: (BuildContext context, int index) {
+                var user = LeaderboardClass.userPointsDonations.entries.toList()[0].key;
                 return ListTile(
                   leading: Text(
                     '${index + 1}',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 15,
                     ),
                   ),
-                  title: Text(''),
+                  title: Text(user),
                 );
               },
             ),

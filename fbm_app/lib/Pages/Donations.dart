@@ -1,4 +1,5 @@
 import 'package:fbm_app/Button/aligned_button.dart';
+// ignore: unused_import
 import 'package:fbm_app/Button/button.dart';
 import 'package:fbm_app/Styles/TextStyle.dart';
 import 'package:flutter/material.dart';
@@ -28,8 +29,7 @@ class Donations extends StatelessWidget {
               'assets/logo.png',
               width: 100,
               height: 100,
-            ),
-          ),
+            )),
       ),
       body: SingleChildScrollView(
         child: Column(

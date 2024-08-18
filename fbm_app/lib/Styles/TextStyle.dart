@@ -7,10 +7,13 @@ class Text_Theme {
   }
 
   static Text text_white(String s) {
-    return Text(s,
-        style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 248, 248, 248)));
+    return Text(
+      s,
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        color: Color.fromARGB(255, 248, 248, 248),
+      ),
+    );
   }
 
   static Align text_size(
