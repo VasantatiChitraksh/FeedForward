@@ -12,7 +12,6 @@ class Donation_form extends StatefulWidget {
 
 class _DonationFormState extends State<Donation_form> {
 <<<<<<< HEAD
-<<<<<<< HEAD
   final List<String> _selected = [
     'Rice(kg/g)',
     'pulses(g)',
@@ -22,8 +21,6 @@ class _DonationFormState extends State<Donation_form> {
   ];
   String Selected_item = "Rice";
 =======
-=======
->>>>>>> parent of ee889fe (Revert)
   static List<ItemDonationWidget> widgets = [];
 
   void addWidgets() {
@@ -46,7 +43,6 @@ class _DonationFormState extends State<Donation_form> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-<<<<<<< HEAD
 <<<<<<< HEAD
               SizedBox(height: 10),
               SizedBox(height: 10),
@@ -116,10 +112,6 @@ class _DonationFormState extends State<Donation_form> {
               for(int i=0; i<widgets.length; i++) widgets[i],
               const Row(children: [
 >>>>>>> parent of ee889fe (Revert)
-=======
-              for(int i=0; i<widgets.length; i++) widgets[i],
-              const Row(children: [
->>>>>>> parent of ee889fe (Revert)
                 SizedBox(height: 40, width: 175),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -133,9 +125,6 @@ class _DonationFormState extends State<Donation_form> {
 =======
               ]),
               FloatingActionButton(onPressed: addWidgets)
-<<<<<<< HEAD
->>>>>>> parent of ee889fe (Revert)
-=======
 >>>>>>> parent of ee889fe (Revert)
             ],
           ),
