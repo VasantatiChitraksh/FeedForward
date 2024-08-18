@@ -14,6 +14,13 @@ class FbProfile extends StatefulWidget {
 
 class _FbProfileState extends State<FbProfile> {
  
+   late Map <String,dynamic> Profile;
+
+  @override
+   void initState() {
+    super.initState();
+    Profile= widget.proDetails;
+  }
 
 
 
@@ -43,14 +50,14 @@ class _FbProfileState extends State<FbProfile> {
             SizedBox(
               height: 15,
             ),
-            Text_Theme.text_field("USER NAME", 15),
+            Text_Theme.text_field('User Name: ${Profile['name']}', 18),
             SizedBox(
               height: 15,
             ),
-            Text_Theme.text_field("CONTACT INFO", 15),
+            Text_Theme.text_field('Contact info: ${Profile['contactnum']}', 18),
             SizedBox(
               height:15 ,),
-            Text_Theme.text_field("E-mail", 15),
+            Text_Theme.text_field('E-Mail: ${Profile['email']}', 18),
             SizedBox(
               height: 15,
             ),

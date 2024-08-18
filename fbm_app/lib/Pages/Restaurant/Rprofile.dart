@@ -12,6 +12,13 @@ class RestaurantProfile extends StatefulWidget {
 
 class _RestaurantProfileState extends State<RestaurantProfile> {
 
+   late Map <String,dynamic> Profile;
+
+  @override
+   void initState() {
+    super.initState();
+    Profile= widget.RDetails;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,15 +45,15 @@ class _RestaurantProfileState extends State<RestaurantProfile> {
               SizedBox(
                 height: 15,
               ),
-              Text_Theme.text_field("NAME", 15),
+              Text_Theme.text_field("NAME: ${Profile['name']}", 15),
               SizedBox(
                 height: 15,
               ),
-              Text_Theme.text_field("ADDRESS", 15),
+              Text_Theme.text_field("ADDRESS: ${Profile['address']}", 15),
               SizedBox(
                 height: 15,
               ),
-              Text_Theme.text_field("CONTACT", 15),
+              Text_Theme.text_field("CONTACT: ${Profile['contactnum']}", 15),
               SizedBox(
                 height: 150,
               ),
