@@ -24,7 +24,6 @@ class _MapOutletsState extends State<MapOutlets> {
   void initState() {
     super.initState();
     _requestPermission();
-    addFoodbank();
     loadFoodBankDetails();
   }
 
@@ -47,6 +46,7 @@ class _MapOutletsState extends State<MapOutlets> {
     }
   }
 
+  //testing
   Future<void> addFoodbank() async {
     CollectionReference foodbanks =
         FirebaseFirestore.instance.collection('foodbank');
