@@ -1,4 +1,3 @@
-import 'package:fbm_app/Styles/BgColor.dart';
 import 'package:fbm_app/Styles/TextStyle.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +12,7 @@ class button2 extends StatelessWidget {
         },
         style: ElevatedButton.styleFrom(
           shape: const CircleBorder(),
-          backgroundColor: Color.fromARGB(255, 233, 6, 6),
+          backgroundColor: Colors.red,
           padding: EdgeInsets.all(40),
         ),
         child: const Icon(
