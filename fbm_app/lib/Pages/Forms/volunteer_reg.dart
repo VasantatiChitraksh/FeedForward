@@ -62,45 +62,6 @@ class _VolunteerFormState extends State<VolunteerForm> {
                         color: Colors.white),
                   ),
                 ),
-<<<<<<< Updated upstream
-              ),
-            
-           // SizedBox(height: 200),
-            TextField(
-              controller: _hoursController,
-              decoration: InputDecoration(
-                labelText: 'Enter the number of hours worked',
-                labelStyle: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 24,
-                    color: Colors.white),
-              ),
-            ),
-            SizedBox(height: 100),
-            ElevatedButton(
-              onPressed: () async {
-                // Parse the hours worked input to an integer
-                int hoursWorked = int.tryParse(_hoursController.text) ?? 0;
-
-                // Call the function to save the data to Firestore
-                //await _saveUserData(_userNameController.text, hoursWorked);
-
-                // Show a Snackbar to confirm data submission
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Data saved successfully')),
-                );
-
-                // Clear the input fields after submission
-                _userNameController.clear();
-                _hoursController.clear();
-              },
-              child: Text('Submit'),
-            )
-          ],
-        ),
-      ),
-    ));
-=======
                 SizedBox(height: 25),
                 TextField(
                   controller: _hoursController,
@@ -150,6 +111,5 @@ class _VolunteerFormState extends State<VolunteerForm> {
             ),
           ),
         ));
->>>>>>> Stashed changes
   }
 }
