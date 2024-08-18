@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fbm_app/Styles/BgColor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
@@ -79,6 +80,7 @@ class _MapOutletsState extends State<MapOutlets> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppTheme.primaryColor,
       appBar: AppBar(
         title: const Text('MAP'),
         centerTitle: true,
@@ -112,9 +114,9 @@ class MapWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlutterMap(
       options: const MapOptions(
-          // initialCenter: LatLng(_center.latitude, _center.longitude),
-          initialZoom: 12.0,
-          ),
+        // initialCenter: LatLng(_center.latitude, _center.longitude),
+        initialZoom: 12.0,
+      ),
       mapController: _mapController,
       children: [
         TileLayer(
