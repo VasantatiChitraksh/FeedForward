@@ -1,6 +1,8 @@
 import 'package:fbm_app/Styles/BgColor.dart';
 import 'package:fbm_app/Styles/TextStyle.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart'; 
+
 
 class VolunteerForm extends StatefulWidget {
   @override
@@ -9,9 +11,25 @@ class VolunteerForm extends StatefulWidget {
 
 class _VolunteerFormState extends State<VolunteerForm> {
   final TextEditingController _userNameController =
-      TextEditingController(text: 'User Name');
+      TextEditingController();
   final TextEditingController _hoursController =
-      TextEditingController(text: 'Volunter Hours');
+      TextEditingController();
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+ 
+  Future<void> _saveUserData(String userName, int hoursWorked, String foodbank) async {
+    try {
+    
+      await _firestore.collection('volunteers').add({
+        'userName': userName,
+        'hoursWorked': hoursWorked,
+        'foodbank':foodbank,
+      });
+      print("Data saved successfully");
+    } catch (e) {
+      print("Error saving data: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +38,7 @@ class _VolunteerFormState extends State<VolunteerForm> {
       appBar: AppBar(
         elevation: 10,
         backgroundColor: AppTheme.bgcolor(),
-        title: Text(
+        title: const Text(
           'Volunteer Form',
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -55,6 +73,26 @@ class _VolunteerFormState extends State<VolunteerForm> {
                     fontSize: 24,
                     color: Colors.white),
               ),
+            ),
+            SizedBox(height: 100),
+            ElevatedButton(
+              onPressed: () async {
+                // Parse the hours worked input to an integer
+                int hoursWorked = int.tryParse(_hoursController.text) ?? 0;
+
+                // Call the function to save the data to Firestore
+                await _saveUserData(_userNameController.text, hoursWorked);
+
+                // Show a Snackbar to confirm data submission
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Data saved successfully')),
+                );
+
+                // Clear the input fields after submission
+                _userNameController.clear();
+                _hoursController.clear();
+              },
+              child: Text('Submit'),
             )
           ],
         ),
