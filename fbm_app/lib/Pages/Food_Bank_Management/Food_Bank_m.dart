@@ -12,7 +12,7 @@ class Food_Bank_Management extends StatelessWidget {
       backgroundColor: AppTheme.primaryColor,
       appBar: AppBar(
         elevation: 10,
-        backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 244, 5, 5),
         title: Text(
           'Food Bank Info',
           style: TextStyle(
@@ -21,7 +21,7 @@ class Food_Bank_Management extends StatelessWidget {
             fontSize: 32,
           ),
         ),
-        centerTitle: false,
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -66,10 +66,10 @@ class Food_Bank_Management extends StatelessWidget {
               height: 30,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SizedBox(
                   height: 100,
+                  width: 75,
                 ),
                 butt(
                   text: "INVENTORY",

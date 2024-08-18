@@ -96,7 +96,6 @@ class volunteers_info extends StatelessWidget {
               )
             ],
           ),
-        ),
-        );
+        ));
   }
 }
