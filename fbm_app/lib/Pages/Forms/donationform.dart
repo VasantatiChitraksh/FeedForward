@@ -1,3 +1,4 @@
+import 'package:fbm_app/Styles/BgColor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -21,12 +22,13 @@ class _DonationFormState extends State<DonationForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: AppTheme.primaryColor,
         appBar: AppBar(
           title: const Text("Donation Form",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Color.fromARGB(235, 0, 0, 0))),
-          centerTitle: true,
+          centerTitle: false,
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -37,7 +39,7 @@ class _DonationFormState extends State<DonationForm> {
               for (int i = 0; i < widgets.length; i++) widgets[i],
               //
               const Row(children: [
-                SizedBox(height: 40, width: 175),
+                SizedBox(height: 40, width: 135),
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: butt(
@@ -46,7 +48,14 @@ class _DonationFormState extends State<DonationForm> {
                       routeName: ''),
                 ),
               ]),
-              FloatingActionButton(onPressed: addWidgets)
+              Align(
+                alignment: Alignment.bottomRight,
+                child: FloatingActionButton.extended(
+                  label: Text(""),
+                  icon: Icon(Icons.add),
+                  onPressed: addWidgets,
+                  ),
+              ),
             ],
           ),
         ));
@@ -78,7 +87,7 @@ class _ItemDonationWidgetState extends State<ItemDonationWidget> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child:
-                Text_Theme.text_colored("Select Food Type", 24, Colors.black87),
+                Text_Theme.text_colored("Select Food Type", 24, Color.fromARGB(221, 13, 13, 13)),
           ),
           const SizedBox(height: 10),
           DropdownButton<String>(

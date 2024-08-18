@@ -4,8 +4,25 @@ import 'package:flutter/material.dart';
 import 'package:fbm_app/Button/button.dart';
 import 'package:flutter/widgets.dart';
 
-class FbProfile extends StatelessWidget {
-  const FbProfile({super.key});
+class FbProfile extends StatefulWidget {
+  final  Map <String,dynamic > proDetails;
+  const FbProfile({super.key,required this.proDetails});
+
+  @override
+  State<FbProfile> createState() => _FbProfileState();
+}
+
+class _FbProfileState extends State<FbProfile> {
+ 
+   late Map <String,dynamic> Profile;
+
+  @override
+   void initState() {
+    super.initState();
+    Profile= widget.proDetails;
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +50,14 @@ class FbProfile extends StatelessWidget {
             SizedBox(
               height: 15,
             ),
-            Text_Theme.text_field("USER NAME", 15),
+            Text_Theme.text_field('User Name: ${Profile['name']}', 18),
             SizedBox(
               height: 15,
             ),
-            Text_Theme.text_field("CONTACT INFO", 15),
+            Text_Theme.text_field('Contact info: ${Profile['contactnum']}', 18),
             SizedBox(
               height:15 ,),
-            Text_Theme.text_field("E-mail", 15),
+            Text_Theme.text_field('E-Mail: ${Profile['email']}', 18),
             SizedBox(
               height: 15,
             ),

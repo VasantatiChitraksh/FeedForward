@@ -23,6 +23,7 @@ class _SignupScreenState extends State<SignupScreen>
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
   TextEditingController phoneTextEditingController = TextEditingController();
+  TextEditingController addressTextEditingController = TextEditingController();
   int role =2;
  CommonMethods cMethods = CommonMethods();
  
@@ -79,6 +80,7 @@ class _SignupScreenState extends State<SignupScreen>
         "name": usernameTextEditingController.text.trim(),
         "email": emailTextEditingController.text.trim(), 
         "contactnum": phoneTextEditingController.text.trim(),
+        "address": addressTextEditingController.text.trim(),
         "id":userFirebase.uid,
         "role": role,
         "blockstatus": "no", 
@@ -90,7 +92,7 @@ class _SignupScreenState extends State<SignupScreen>
       Navigator.pushReplacement(
         // ignore: use_build_context_synchronously
         context,
-        MaterialPageRoute(builder: (c) =>  Homepage(r: role,)),
+        MaterialPageRoute(builder: (c) =>  Homepage(userDetails: userMap)),
       );
    }
 
@@ -189,6 +191,19 @@ class _SignupScreenState extends State<SignupScreen>
                     ),  
   
                     const SizedBox(height: 40,),
+                     TextField(
+                      controller: addressTextEditingController,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        labelText:"Address ",
+                        labelStyle: TextStyle(color: Colors.white,fontSize: 18), 
+                      ),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                      ),
+                    ), 
+                    const SizedBox(height: 40,),
 
                      Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -218,7 +233,7 @@ class _SignupScreenState extends State<SignupScreen>
                         ),
                       ],
                     ),
-                    SizedBox(height: 30,),
+                    SizedBox(height: 20,),
 
                     ElevatedButton(
                       onPressed: () 
@@ -246,7 +261,7 @@ class _SignupScreenState extends State<SignupScreen>
               
 
                 //textbutton
-                SizedBox(height: 30,),
+                SizedBox(height: 1,),
 
                 TextButton(
                   onPressed: ()
