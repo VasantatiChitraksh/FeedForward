@@ -47,6 +47,7 @@ class leaderboard extends StatelessWidget {
           SizedBox(
             height: 30,
           ),
+
           Container(
             color: Colors.brown,
             height: 30,
@@ -61,6 +62,22 @@ class leaderboard extends StatelessWidget {
               ),
             ),
           ),
+
+Container(
+  color: Colors.brown,
+  height: 30,
+  width: 120, 
+  child: Center(
+    child: Text(
+      "Volunteer",
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 16,    
+      ),
+    ),
+  ),
+),
+
           Container(
             color: Colors.brown,
             height: 500,
@@ -83,6 +100,7 @@ class leaderboard extends StatelessWidget {
             height: 50,
           ),
           Container(
+
             color: const Color.fromARGB(255, 35, 137, 38),
             height: 30,
             width: 120,
@@ -96,6 +114,21 @@ class leaderboard extends StatelessWidget {
               ),
             ),
           ),
+
+  color: const Color.fromARGB(255, 35, 137, 38),
+  height: 30,
+  width: 120, 
+  child: Center(
+    child: Text(
+      "Donations",
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 16,    
+      ),
+    ),
+  ),
+),
+
           Container(
             color: const Color.fromARGB(255, 35, 137, 38),
             height: 500,

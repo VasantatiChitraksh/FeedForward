@@ -7,6 +7,7 @@ class Inventory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       backgroundColor: AppTheme.bgcolor(),
       appBar: AppBar(
         backgroundColor: AppTheme.titleColor(),
@@ -48,6 +49,7 @@ class Inventory extends StatelessWidget {
           ],
         ),
       ),
+
     );
   }
 }
