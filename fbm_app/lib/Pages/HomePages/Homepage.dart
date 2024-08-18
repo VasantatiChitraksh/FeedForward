@@ -33,9 +33,9 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     NotificationClass(
-        'Leaderboard', '${LeaderboardClass.winnerDonation} is no.1 donor');
+        'Leaderboard', '${LeaderboardClass.winnerDonation} is no.1 donor', false);
     NotificationClass(
-        'Leaderboard', '${LeaderboardClass.winnerVolunteer} is no.1 volunteer');
+        'Leaderboard', '${LeaderboardClass.winnerVolunteer} is no.1 volunteer', false);
 
     return Scaffold(
         backgroundColor: AppTheme.bgcolor(),
