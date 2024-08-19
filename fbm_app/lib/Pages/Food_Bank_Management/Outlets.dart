@@ -13,15 +13,12 @@ class Outlets extends StatefulWidget {
 }
 
 class _OutletsState extends State<Outlets> {
-  List<Map<String, LatLng>> outlets = [];
+  List<String> outlets = [];
 
   @override
   void initState() {
     super.initState();
     loadFoodBankDetails();
-    outlets.add({'Foodbank A': LatLng(37.7749, -122.4194)});
-    outlets.add({'Foodbank B': LatLng(40.7128, -74.0060)});
-    outlets.add({'Foodbank C': LatLng(34.0522, -118.2437)});
   }
 
   @override
@@ -51,7 +48,7 @@ class _OutletsState extends State<Outlets> {
                               vertical: 10.0, horizontal: 16.0),
                           child: Column(children: [
                             ListTile(
-                                title: Text_Theme.text_size(outlet.keys.first, 25),),
+                                title: Text_Theme.text_size(outlet, 25),),
                             const Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -76,9 +73,7 @@ class _OutletsState extends State<Outlets> {
 
     for (var doc in queryfoodbank.docs) {
       String name = doc['name'];
-      GeoPoint loc = doc['location'];
-      LatLng latlng = LatLng(loc.latitude, loc.longitude);
-      outlets.add({name: latlng});
+      outlets.add(name);
     }
   }
 }
