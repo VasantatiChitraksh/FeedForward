@@ -24,7 +24,9 @@ class _MapOutletsState extends State<MapOutlets> {
     super.initState();
     _requestPermission();
     loadFoodBankDetails();
-    addFoodbank();
+    outlets.add({'Foodbank A': LatLng(37.7749, -122.4194)});
+    outlets.add({'Foodbank B': LatLng(40.7128, -74.0060)});
+    outlets.add({'Foodbank C': LatLng(34.0522, -118.2437)});
   }
 
 //getting details from firebase
@@ -36,8 +38,10 @@ class _MapOutletsState extends State<MapOutlets> {
 
     for (var doc in queryfoodbank.docs) {
       String name = doc['name'];
-      var loc = doc['location'];
-      LatLng latlng = LatLng(loc['latitude'], loc['longitude']);
+      GeoPoint loc = doc['location'];
+      print(loc);
+      LatLng latlng = LatLng(loc.latitude, loc.longitude);
+      print(latlng);
       outlets.add({name: latlng});
       markers.add(Marker(
         point: latlng,
@@ -113,9 +117,9 @@ class MapWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlutterMap(
       options: const MapOptions(
-          // initialCenter: LatLng(_center.latitude, _center.longitude),
-          initialZoom: 12.0,
-          ),
+        // initialCenter: LatLng(_center.latitude, _center.longitude),
+        initialZoom: 12.0,
+      ),
       mapController: _mapController,
       children: [
         TileLayer(

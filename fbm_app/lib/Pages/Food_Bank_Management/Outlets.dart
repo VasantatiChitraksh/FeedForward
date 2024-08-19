@@ -76,8 +76,8 @@ class _OutletsState extends State<Outlets> {
 
     for (var doc in queryfoodbank.docs) {
       String name = doc['name'];
-      var loc = doc['location'];
-      LatLng latlng = LatLng(loc['latitude'], loc['longitude']);
+      GeoPoint loc = doc['location'];
+      LatLng latlng = LatLng(loc.latitude, loc.longitude);
       outlets.add({name: latlng});
     }
   }
